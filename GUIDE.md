@@ -4,17 +4,17 @@
 
 This page has everything you need to get started: what the challenge is, how to load the data, what each dataset holds, the mistakes most teams make, and how to submit.
 
-| Step | Section | Time |
-| :-: | --- | --- |
-| 1 | [The challenge in 2 minutes](#1-the-challenge-in-2-minutes) | 2 min |
-| 2 | [Set up](#2-set-up) | 10 min |
-| 3 | [The datasets](#3-the-datasets) | 10 min |
-| 4 | [Five ideas to know before you start](#4-five-ideas-to-know-before-you-start) | 5 min |
-| 5 | [Common issues](#5-common-issues) | 5 min |
-| 6 | [The $100,000 budget](#6-the-100000-budget) | 3 min |
-| 7 | [How you're judged](#7-how-youre-judged) | 3 min |
-| 8 | [What to submit on Devpost](#8-what-to-submit-on-devpost) | 2 min |
-| 9 | [Rules and getting help](#9-rules-and-getting-help) | 1 min |
+| Step | Section                                                                       | Time   |
+| :--: | ----------------------------------------------------------------------------- | ------ |
+|  1   | [The challenge in 2 minutes](#1-the-challenge-in-2-minutes)                   | 2 min  |
+|  2   | [Set up](#2-set-up)                                                           | 10 min |
+|  3   | [The datasets](#3-the-datasets)                                               | 10 min |
+|  4   | [Five ideas to know before you start](#4-five-ideas-to-know-before-you-start) | 5 min  |
+|  5   | [Common issues](#5-common-issues)                                             | 5 min  |
+|  6   | [The $100,000 budget](#6-the-100000-budget)                                   | 3 min  |
+|  7   | [How you're judged](#7-how-youre-judged)                                      | 3 min  |
+|  8   | [What to submit on Devpost](#8-what-to-submit-on-devpost)                     | 2 min  |
+|  9   | [Rules and getting help](#9-rules-and-getting-help)                           | 1 min  |
 
 > [!NOTE]
 > **The casino is fictional and all of its data is synthetic.** The world around it is real: Las Vegas tourism, weather and Missouri casino benchmarks for January–June 2025. Data release `0.9.0-draft`: tables and columns are stable, but values may change before `1.0.0`.
@@ -31,7 +31,7 @@ You've just joined **The Gilded Ace**, a 300-machine casino, as its floor analyt
 
 **Your job.** Build a dashboard that answers:
 
-1. Which machines are *truly* underperforming once you account for exposure, availability and luck?
+1. Which machines are _truly_ underperforming once you account for exposure, availability and luck?
 2. What changed in demand across the floor over the six months, and why?
 3. How much play was lost to downtime, and when?
 4. What did tracked players wager, get back and net, and how concentrated are those results?
@@ -50,18 +50,18 @@ These six questions are the minimum. Well-supported findings beyond them earn cr
 ### Get the data
 
 ```sh
-git clone --depth 1 https://github.com/tamu-datathon-org/dashboard-casino.git
-cd dashboard-casino
+git clone --depth 1 https://github.com/tamu-datathon-org/dashboard-royale.git
+cd dashboard-royale
 ```
 
 `--depth 1` skips old versions of the files. Allow at least 1 GB of free space for the download, extracted CSVs and your work. You can also click **Code → Download ZIP** on GitHub.
 
 Every table comes in two formats with identical rows:
 
-| Format | Best for |
-| --- | --- |
+| Format     | Best for                                                                              |
+| ---------- | ------------------------------------------------------------------------------------- |
 | `.parquet` | Python, R, DuckDB, Power BI, Tableau. Typed, small and fast. **Recommended for code** |
-| `.csv.gz` | Anything else. Unzip it first to get a plain `.csv` |
+| `.csv.gz`  | Anything else. Unzip it first to get a plain `.csv`                                   |
 
 ### Load it in your tool
 
@@ -140,6 +140,7 @@ daily <- read_parquet("data/1_prepared_views/prepared_daily_view.parquet")
 3. Start with the three files in `data/1_prepared_views/`, which are already joined and small.
 
 **Size limits:**
+
 - Excel stops at 1,048,576 rows, so `machine_hour` (1.3M rows) won't fit. Aggregate it first or use another tool.
 - Looker Studio file uploads are capped at 100 MB.
 - Tableau Public dashboards are public by default.
@@ -150,11 +151,11 @@ daily <- read_parquet("data/1_prepared_views/prepared_daily_view.parquet")
 
 You don't need any joins to start:
 
-| File | One row = | Use it for |
-| --- | --- | --- |
+| File                                        | One row =     | Use it for                                                        |
+| ------------------------------------------- | ------------- | ----------------------------------------------------------------- |
 | `data/1_prepared_views/prepared_daily_view` | machine × day | Machine performance, availability, costs, context, all in dollars |
-| `data/1_prepared_views/property_day` | day | Whole-floor trends |
-| `data/2_machine_decision/action_catalog` | action | What the $100,000 can buy |
+| `data/1_prepared_views/property_day`        | day           | Whole-floor trends                                                |
+| `data/2_machine_decision/action_catalog`    | action        | What the $100,000 can buy                                         |
 
 ---
 
@@ -174,72 +175,72 @@ data/
 
 ### 1 · Prepared views ⭐
 
-| Table | One row = | What's in it | Rows |
-| --- | --- | --- | ---: |
-| `prepared_daily_view` | machine × day | Meters, location, game settings, availability, costs, events, 7- and 28-day history | 56,110 |
-| `property_day` | day | Floor totals: wagers, payouts, food and drink, comps, faults, traffic, costs | 181 |
-| `player_period` | player × month | Each card holder's wagers, results, expected loss, points, comps | 148,893 |
+| Table                 | One row =      | What's in it                                                                        |    Rows |
+| --------------------- | -------------- | ----------------------------------------------------------------------------------- | ------: |
+| `prepared_daily_view` | machine × day  | Meters, location, game settings, availability, costs, events, 7- and 28-day history |  56,110 |
+| `property_day`        | day            | Floor totals: wagers, payouts, food and drink, comps, faults, traffic, costs        |     181 |
+| `player_period`       | player × month | Each card holder's wagers, results, expected loss, points, comps                    | 148,893 |
 
 ### 2 · Machine decision
 
-| Table | One row = | What's in it | Rows |
-| --- | --- | --- | ---: |
-| `machines` | machine | Manufacturer, game title, install and retire dates | 310 |
-| `game_math` | game setting | Published payout rate (RTP), volatility, bet sizes | 10 |
-| `placements` | machine × time span | Which slot a machine was in, and when. **Machines move** | 314 |
-| `floor_locations` | zone / bank / slot | Floor layout with coordinates | 378 |
-| `floor_walkways` | walkway | Walkways connecting zones | 10 |
-| `machine_day` | machine × day | Raw meters in cents, covering **all** play (carded or not) | 56,110 |
-| `operations` | ticket | Faults, repairs, maintenance, moves, installs | 1,226 |
-| `cost_rules` | cost rule | Leases, service, power, repairs | 9 |
-| `action_catalog` | action | The 13 things you can spend the budget on | 13 |
-| `calendar_day` | day | Gaming days, weekdays, holidays, length in seconds | 181 |
+| Table             | One row =           | What's in it                                               |   Rows |
+| ----------------- | ------------------- | ---------------------------------------------------------- | -----: |
+| `machines`        | machine             | Manufacturer, game title, install and retire dates         |    310 |
+| `game_math`       | game setting        | Published payout rate (RTP), volatility, bet sizes         |     10 |
+| `placements`      | machine × time span | Which slot a machine was in, and when. **Machines move**   |    314 |
+| `floor_locations` | zone / bank / slot  | Floor layout with coordinates                              |    378 |
+| `floor_walkways`  | walkway             | Walkways connecting zones                                  |     10 |
+| `machine_day`     | machine × day       | Raw meters in cents, covering **all** play (carded or not) | 56,110 |
+| `operations`      | ticket              | Faults, repairs, maintenance, moves, installs              |  1,226 |
+| `cost_rules`      | cost rule           | Leases, service, power, repairs                            |      9 |
+| `action_catalog`  | action              | The 13 things you can spend the budget on                  |     13 |
+| `calendar_day`    | day                 | Gaming days, weekdays, holidays, length in seconds         |    181 |
 
 ### 3 · Guests (loyalty-card holders only)
 
-| Table | One row = | What's in it | Rows |
-| --- | --- | --- | ---: |
-| `players` | card holder | Home region, age band, starting tier | 113,890 |
-| `sessions` | play session segment | One stretch of carded play on one machine | 776,297 |
-| `trips` | recorded visit | One card's activity during one visit to the casino | 351,729 |
-| `loyalty_ledger` | points event | Points earned and redeemed | 782,773 |
-| `fnb_transactions` | food and drink receipt | Every sale, carded or not | 227,833 |
+| Table              | One row =              | What's in it                                       |    Rows |
+| ------------------ | ---------------------- | -------------------------------------------------- | ------: |
+| `players`          | card holder            | Home region, age band, starting tier               | 113,890 |
+| `sessions`         | play session segment   | One stretch of carded play on one machine          | 776,297 |
+| `trips`            | recorded visit         | One card's activity during one visit to the casino | 351,729 |
+| `loyalty_ledger`   | points event           | Points earned and redeemed                         | 782,773 |
+| `fnb_transactions` | food and drink receipt | Every sale, carded or not                          | 227,833 |
 
 ### 4 · Context
 
-| Table | One row = | What's in it | Rows |
-| --- | --- | --- | ---: |
-| `zone_traffic_hourly` | sensor × hour | Door and zone entry counts (imperfect, see below) | 30,401 |
-| `events` | event | Conventions, sports weekends, festivals, casino promotions | 8 |
+| Table                 | One row =     | What's in it                                               |   Rows |
+| --------------------- | ------------- | ---------------------------------------------------------- | -----: |
+| `zone_traffic_hourly` | sensor × hour | Door and zone entry counts (imperfect, see below)          | 30,401 |
+| `events`              | event         | Conventions, sports weekends, festivals, casino promotions |      8 |
 
 **🌎 Real sources** (`4_context/real_sources/`), unmodified public data:
 
-| Table | Source | What's in it |
-| --- | --- | --- |
-| `city_visitation_monthly` | LVCVA | Las Vegas visitors, conventions, hotel occupancy, airport traffic by month |
-| `visitor_profile_summary` / `_segments` | LVCVA survey | How Las Vegas visitors gamble, spend and stay |
-| `weather_daily` | NOAA | Daily temperature and rain at the Las Vegas airport |
-| `benchmark_public` + monthly totals | Missouri Gaming Commission | Real slot results from 13 Missouri casinos |
+| Table                                   | Source                     | What's in it                                                               |
+| --------------------------------------- | -------------------------- | -------------------------------------------------------------------------- |
+| `city_visitation_monthly`               | LVCVA                      | Las Vegas visitors, conventions, hotel occupancy, airport traffic by month |
+| `visitor_profile_summary` / `_segments` | LVCVA survey               | How Las Vegas visitors gamble, spend and stay                              |
+| `weather_daily`                         | NOAA                       | Daily temperature and rain at the Las Vegas airport                        |
+| `benchmark_public` + monthly totals     | Missouri Gaming Commission | Real slot results from 13 Missouri casinos                                 |
 
 ### 5 · Optional
 
-| Table | One row = | What's in it | Rows |
-| --- | --- | --- | ---: |
-| `machine_hour` | machine × hour | Hourly meters; add up to `machine_day` | 1,321,908 |
-| `shift_roster` | staff assignment | Who worked which shift, by role | 10,317 |
-| `security_incidents` | report | Incidents that someone reported | 3,865 |
-| `visitor_profile_monthly` | month × metric | The casino's own (fictional) guest survey | 42 |
+| Table                     | One row =        | What's in it                              |      Rows |
+| ------------------------- | ---------------- | ----------------------------------------- | --------: |
+| `machine_hour`            | machine × hour   | Hourly meters; add up to `machine_day`    | 1,321,908 |
+| `shift_roster`            | staff assignment | Who worked which shift, by role           |    10,317 |
+| `security_incidents`      | report           | Incidents that someone reported           |     3,865 |
+| `visitor_profile_monthly` | month × metric   | The casino's own (fictional) guest survey |        42 |
 
 **Which table answers which question?**
 
-| Question | Start with | Go deeper with |
-| --- | --- | --- |
-| Q1: truly weak machines | `prepared_daily_view` | `machine_day`, `game_math`, `placements` |
-| Q2: demand changes | `property_day`, `zone_traffic_hourly` | `events`, `real_sources/` |
-| Q3: downtime | `prepared_daily_view` (availability) | `operations`, `shift_roster` |
-| Q4: player outcomes | `player_period` | `sessions`, `trips` |
-| Q5: comp program | `player_period`, `property_day` | `loyalty_ledger`, `fnb_transactions` |
-| Q6: actions | `action_catalog`, `cost_rules` | everything above |
+| Question                | Start with                            | Go deeper with                           |
+| ----------------------- | ------------------------------------- | ---------------------------------------- |
+| Q1: truly weak machines | `prepared_daily_view`                 | `machine_day`, `game_math`, `placements` |
+| Q2: demand changes      | `property_day`, `zone_traffic_hourly` | `events`, `real_sources/`                |
+| Q3: downtime            | `prepared_daily_view` (availability)  | `operations`, `shift_roster`             |
+| Q4: player outcomes     | `player_period`                       | `sessions`, `trips`                      |
+| Q5: comp program        | `player_period`, `property_day`       | `loyalty_ledger`, `fnb_transactions`     |
+| Q6: actions             | `action_catalog`, `cost_rules`        | everything above                         |
 
 For every column, see the [data dictionary](reference/DATA_DICTIONARY.md). For conventions and exact money definitions, see the [dataset reference](reference/DATASET.md).
 
@@ -253,15 +254,15 @@ For every column, see the [data dictionary](reference/DATA_DICTIONARY.md). For c
 
 **3. The money words.**
 
-| Term | Meaning | Example |
-| --- | --- | --- |
-| **Coin-in** | Total wagered, including winnings bet again | $500 |
-| **Payout** | Total paid back by the game | $460 |
-| **House win** | Coin-in − payout | $40 |
-| **Hold** | House win ÷ coin-in | 8% |
-| **RTP** | The game's long-run payout rate | 92% |
-| **Theo** | *Expected* house win = coin-in × (1 − RTP) | $40 |
-| **Luck residual** | Actual result vs. expected; luck shows up here | |
+| Term              | Meaning                                        | Example |
+| ----------------- | ---------------------------------------------- | ------- |
+| **Coin-in**       | Total wagered, including winnings bet again    | $500    |
+| **Payout**        | Total paid back by the game                    | $460    |
+| **House win**     | Coin-in − payout                               | $40     |
+| **Hold**          | House win ÷ coin-in                            | 8%      |
+| **RTP**           | The game's long-run payout rate                | 92%     |
+| **Theo**          | _Expected_ house win = coin-in × (1 − RTP)     | $40     |
+| **Luck residual** | Actual result vs. expected; luck shows up here |         |
 
 **4. Luck is real.** Slot results swing a lot, especially on high-volatility games. Compare **actual house win against theo** before calling a machine bad.
 
@@ -271,28 +272,29 @@ For every column, see the [data dictionary](reference/DATA_DICTIONARY.md). For c
 
 ## 5. Common issues
 
-| ❌ Mistake | ✅ Do this instead |
-| --- | --- |
-| Ranking machines by total house win | Adjust for luck (theo), availability and how long the machine was on the floor |
-| "Player totals don't match machine totals, the data is broken" | Expected: player tables only include carded play. Use the `carded_*` columns in `machine_day` to compare |
-| Averaging daily ratios (mean of each day's hold) | Use **ratio of sums**: `SUM(house_win) / SUM(coin_in)` |
-| Joining `sessions` to `fnb_transactions` row by row, then summing | Money gets counted multiple times. **Aggregate each table first, then join** |
-| Counting days a machine wasn't on the floor as zero sales | 1,018 rows in `prepared_daily_view` are days before a machine was installed or after it was retired (`location_id` is empty). Leave them out, or compare per day on the floor |
-| Assuming a machine always sat in the same place | Machines move. Use `placements` (or `prepared_daily_view`) for location on a given date |
-| Assuming every day has 24 hours | March 8, 2025 has 23 hours (daylight saving). Use `scheduled_seconds` from `calendar_day` |
-| Treating a missing traffic count as zero | Missing means the counter was offline. Check `counter_status` |
-| Treating traffic counts as unique visitors | They count entries; one guest can be counted many times, and seated players aren't counted |
-| Mixing up cents and dollars | `_cents` columns are integer cents; `_usd` columns are dollars |
-| Subtracting `comp_cost_usd` *and* `linked_pos_cogs_usd` | Comp cost is already included in cogs. Subtract it once |
-| "Negative house win, that must be an error" | A machine can lose money on a day. That's real, and luck |
-| Treating `trips` as whole Las Vegas trips | They are visits to *this casino* only |
-| Applying LVCVA survey numbers to this casino's guests | They describe all Las Vegas visitors, not this property's customers |
-| Random train/test split for a model | Split by **time**: train on earlier months, test on later ones |
-| Using information from the future in a model (e.g. next week's repairs) | Only use what was known on the prediction date. The `lag_*` columns use prior days; for a multi-day forecast, do not use holdout-day results to compute future inputs |
-| "This machine pays out too much, someone is cheating" | An unusual pattern is a reason to **inspect**, not proof of wrongdoing |
+| ❌ Mistake                                                              | ✅ Do this instead                                                                                                                                                            |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ranking machines by total house win                                     | Adjust for luck (theo), availability and how long the machine was on the floor                                                                                                |
+| "Player totals don't match machine totals, the data is broken"          | Expected: player tables only include carded play. Use the `carded_*` columns in `machine_day` to compare                                                                      |
+| Averaging daily ratios (mean of each day's hold)                        | Use **ratio of sums**: `SUM(house_win) / SUM(coin_in)`                                                                                                                        |
+| Joining `sessions` to `fnb_transactions` row by row, then summing       | Money gets counted multiple times. **Aggregate each table first, then join**                                                                                                  |
+| Counting days a machine wasn't on the floor as zero sales               | 1,018 rows in `prepared_daily_view` are days before a machine was installed or after it was retired (`location_id` is empty). Leave them out, or compare per day on the floor |
+| Assuming a machine always sat in the same place                         | Machines move. Use `placements` (or `prepared_daily_view`) for location on a given date                                                                                       |
+| Assuming every day has 24 hours                                         | March 8, 2025 has 23 hours (daylight saving). Use `scheduled_seconds` from `calendar_day`                                                                                     |
+| Treating a missing traffic count as zero                                | Missing means the counter was offline. Check `counter_status`                                                                                                                 |
+| Treating traffic counts as unique visitors                              | They count entries; one guest can be counted many times, and seated players aren't counted                                                                                    |
+| Mixing up cents and dollars                                             | `_cents` columns are integer cents; `_usd` columns are dollars                                                                                                                |
+| Subtracting `comp_cost_usd` _and_ `linked_pos_cogs_usd`                 | Comp cost is already included in cogs. Subtract it once                                                                                                                       |
+| "Negative house win, that must be an error"                             | A machine can lose money on a day. That's real, and luck                                                                                                                      |
+| Treating `trips` as whole Las Vegas trips                               | They are visits to _this casino_ only                                                                                                                                         |
+| Applying LVCVA survey numbers to this casino's guests                   | They describe all Las Vegas visitors, not this property's customers                                                                                                           |
+| Random train/test split for a model                                     | Split by **time**: train on earlier months, test on later ones                                                                                                                |
+| Using information from the future in a model (e.g. next week's repairs) | Only use what was known on the prediction date. The `lag_*` columns use prior days; for a multi-day forecast, do not use holdout-day results to compute future inputs         |
+| "This machine pays out too much, someone is cheating"                   | An unusual pattern is a reason to **inspect**, not proof of wrongdoing                                                                                                        |
 
 > [!WARNING]
 > **Large files:**
+>
 > - `machine_hour`, `sessions` and `loyalty_ledger` are each 750,000+ rows.
 > - Use Parquet and DuckDB/pandas, or aggregate them before loading into a BI tool.
 
@@ -304,29 +306,29 @@ You control a pretend **$100,000** for the **30 days from July 1, 2025**. Fund *
 
 **Why it matters:** each possible cause needs a different fix. Good spending shows that you found the real cause.
 
-| If low earnings come from… | The money might go to… |
-| --- | --- |
-| Luck | Nothing. **Keeping the budget is a valid answer** |
-| Location | Moving machines, or new signs for a zone |
-| Downtime | Another technician, or preventive maintenance |
-| Payout settings | Inspecting machines |
-| Comps or guests | A comp policy test or change |
+| If low earnings come from… | The money might go to…                            |
+| -------------------------- | ------------------------------------------------- |
+| Luck                       | Nothing. **Keeping the budget is a valid answer** |
+| Location                   | Moving machines, or new signs for a zone          |
+| Downtime                   | Another technician, or preventive maintenance     |
+| Payout settings            | Inspecting machines                               |
+| Comps or guests            | A comp policy test or change                      |
 
-| Action | Cost | Limit |
-| --- | ---: | --- |
-| Move one machine | $1,800 | 24 |
-| Move a whole bank | $9,500 | 3 |
-| Replace with a leased machine | $2,500 + $55/day | 20 |
-| Replace with a purchased machine | $22,000 | 10 |
-| Add a technician to a shift (30 days) | $11,520 | 3 |
-| Preventive maintenance, one manufacturer | $9,000 | 3 |
-| Inspect a machine and verify its payout | $1,200 | 15 |
-| New signs for a zone | $7,500 | 2 |
-| Comp policy pilot with a control group | $4,000 | 1 |
-| Change the comp rate floor-wide | $1,500 | 1 (not with the pilot) |
-| Promotion weekend | $15,000 | 2 |
-| Bigger guest survey | $3,500 | 1 month |
-| Keep the budget | $0 | always |
+| Action                                   |             Cost | Limit                  |
+| ---------------------------------------- | ---------------: | ---------------------- |
+| Move one machine                         |           $1,800 | 24                     |
+| Move a whole bank                        |           $9,500 | 3                      |
+| Replace with a leased machine            | $2,500 + $55/day | 20                     |
+| Replace with a purchased machine         |          $22,000 | 10                     |
+| Add a technician to a shift (30 days)    |          $11,520 | 3                      |
+| Preventive maintenance, one manufacturer |           $9,000 | 3                      |
+| Inspect a machine and verify its payout  |           $1,200 | 15                     |
+| New signs for a zone                     |           $7,500 | 2                      |
+| Comp policy pilot with a control group   |           $4,000 | 1                      |
+| Change the comp rate floor-wide          |           $1,500 | 1 (not with the pilot) |
+| Promotion weekend                        |          $15,000 | 2                      |
+| Bigger guest survey                      |           $3,500 | 1 month                |
+| Keep the budget                          |               $0 | always                 |
 
 Use the catalogue's `lead_days`, downtime and incompatibilities in your plan. Do not assign conflicting moves or replacements to the same machine, or combine the comp pilot with the floor-wide comp change. Count purchased machines' full cost against the budget.
 
@@ -342,13 +344,13 @@ For each action, state its **cost, expected effect, uncertainty, and how you'd m
 
 Chart count, model complexity and the number of patterns found **don't** score points. Any analytical approach can earn full marks.
 
-| Criterion | Weight | What earns top marks |
-| --- | ---: | --- |
-| **Analytical validity** | 30% | Correct money math; fair comparisons that account for exposure, availability and luck; uncertainty shown; a competing explanation tested |
-| **Dashboard and communication** | 25% | A clear path from question to decision that a manager can follow; accessible visuals; every claim traceable to data |
-| **Modeling and validation** | 20% | One sensible model that changes a decision, compared honestly with a simple baseline on a time-based holdout, with no leakage |
-| **Recommendations and tradeoffs** | 15% | Priced actions within budget, assumptions and sensitivity, a measurement plan |
-| **Originality** | 10% | An unexpected, useful finding someone else could reproduce |
+| Criterion                         | Weight | What earns top marks                                                                                                                     |
+| --------------------------------- | -----: | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Analytical validity**           |    30% | Correct money math; fair comparisons that account for exposure, availability and luck; uncertainty shown; a competing explanation tested |
+| **Dashboard and communication**   |    25% | A clear path from question to decision that a manager can follow; accessible visuals; every claim traceable to data                      |
+| **Modeling and validation**       |    20% | One sensible model that changes a decision, compared honestly with a simple baseline on a time-based holdout, with no leakage            |
+| **Recommendations and tradeoffs** |    15% | Priced actions within budget, assumptions and sensitivity, a measurement plan                                                            |
+| **Originality**                   |    10% | An unexpected, useful finding someone else could reproduce                                                                               |
 
 **A beginner-friendly modeling route:** use January–April to choose a simple forecast of daily floor coin-in (for example, average coin-in by weekday). Compare it with a constant training-period daily mean on May–June. Report mean absolute error (MAE: average absolute prediction error, in dollars), show predictions against actuals, and explain how the result changes a staffing or promotion decision. Freeze both forecasts before testing; later-published tourism and survey data cannot be inputs to a forecast made in 2025. A simple time-series method satisfies the requirement; advanced ML is optional.
 
@@ -384,6 +386,7 @@ Use DevPost for submissions and its event page for deadlines and upload details.
 ## 9. Rules and getting help
 
 **Rules**
+
 - The casino and its people are fictional. Don't present any finding as a fact about a real casino.
 - Some patterns have more than one reasonable explanation. Show the alternative you tested.
 - No accusations. Unusual payouts or incidents are leads to inspect, not proof of wrongdoing.
@@ -395,11 +398,11 @@ Use DevPost for submissions and its event page for deadlines and upload details.
 
 **Quick answers**
 
-| Question | Answer |
-| --- | --- |
-| Is any casino data real? | No. Only the files in `4_context/real_sources/` are real |
-| Why 310 machines in a 300-machine casino? | Some machines were retired or replaced during the six months. Between 300 and 308 are on the floor on any given day |
-| Why are timestamps in UTC? | So no hour is lost or doubled at daylight-saving changes. Tables with timestamps also give the main one in local time (`_local`) |
-| Can carded net win be bigger than total net win? | Yes. Uncarded players can win as a group |
-| Does a low-hold machine mean it's broken? | Not necessarily. Check exposure, volatility and availability first |
-| Does the action catalogue say what works? | No. It only gives prices and limits |
+| Question                                         | Answer                                                                                                                           |
+| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| Is any casino data real?                         | No. Only the files in `4_context/real_sources/` are real                                                                         |
+| Why 310 machines in a 300-machine casino?        | Some machines were retired or replaced during the six months. Between 300 and 308 are on the floor on any given day              |
+| Why are timestamps in UTC?                       | So no hour is lost or doubled at daylight-saving changes. Tables with timestamps also give the main one in local time (`_local`) |
+| Can carded net win be bigger than total net win? | Yes. Uncarded players can win as a group                                                                                         |
+| Does a low-hold machine mean it's broken?        | Not necessarily. Check exposure, volatility and availability first                                                               |
+| Does the action catalogue say what works?        | No. It only gives prices and limits                                                                                              |
