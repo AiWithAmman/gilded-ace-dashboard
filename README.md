@@ -12,6 +12,8 @@ Fictional casino; synthetic data calibrated to public aggregates.
 
 **New here? Start with the [participant guide](GUIDE.md).** It covers the challenge, setup, the datasets, common mistakes and how to submit.
 
+🎰 **[View the example dashboard](https://tamu-datathon-org.github.io/dashboard-royale/example-dashboard.html)** (layout only; all values are placeholders)
+
 | | |
 | --- | --- |
 | 📘 [Participant guide](GUIDE.md) | The challenge, setup, datasets, common issues, submission |
