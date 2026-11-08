@@ -5,178 +5,197 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%230f2a4f%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 text-anchor=%27middle%27 fill=%27%23d8ae5a%27 font-family=%27sans-serif%27 font-weight=%27700%27%3EA%3C/text%3E%3C/svg%3E">
 <title>Luck, Location, or Leak</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ============ Professional theme ============ */
+/* Layout: one narrow vertical column read top to bottom. Minimal neo-brutalism: paper, black ink, hard 2px rules and offset shadows, one signal yellow for emphasis; chart series keep their data colours. */
 :root{
   color-scheme:light;
-  --page:#f5f6f8; --surface:#ffffff; --surface-2:#f1f3f6; --ink:#0f172a; --ink-2:#334155; --muted:#64748b;
-  --line:#e2e6ec; --line-2:#cdd3dc; --grid:#e9ecf1; --axis:#94a3b8; --ring:#2451b5; --shadow:rgba(15,23,42,.06);
-  --brand:#0f2a4f; --brand-ink:#ffffff; --gold:#b8892d; --accent:#2451b5;
-  --s1:#2f6fd6; --s2:#e07a2f; --s3:#1f9d74; --s4:#d4a017; --s5:#c2457a; --s6:#1b9bb5; --s7:#6f52c9; --s8:#d1453b;
-  --good:#1f9d74; --warn:#d4a017; --serious:#e07a2f; --crit:#c2362c; --good-text:#16794f;
-  --neutral:#c4ccd7; --accent-wash:#eaf1fd;
-  --hl-yellow:#fbf4e1; --hl-pink:#fbecf2; --hl-blue:#eaf1fd; --hl-green:#e6f5ef; --hl-orange:#fdf0e6; --hl-purple:#f0ecfb; --hl-gray:#eef1f5;
-  --a-yellow:#b8892d; --a-blue:#2f6fd6; --a-green:#1f9d74; --a-pink:#c2457a; --a-orange:#e07a2f; --a-purple:#6f52c9; --a-gray:#64748b;
-  --r:10px; --sh:0 1px 2px rgba(15,23,42,.05),0 1px 3px rgba(15,23,42,.04); --sh-sm:0 1px 2px rgba(15,23,42,.06);
+  --page:#f7f7f2; --surface:#ffffff; --surface-2:#efefe8; --ink:#0a0a0a; --ink-2:#262626; --muted:#5c5c55;
+  --line:#0a0a0a; --line-2:#0a0a0a; --grid:#e4e4dc; --axis:#0a0a0a; --ring:#0a0a0a; --shadow:#0a0a0a;
+  --signal:#ffd400; --signal-ink:#0a0a0a; --accent:#0a0a0a;
+  --s1:#2f5bea; --s2:#f26b1d; --s3:#11a36a; --s4:#e0b000; --s5:#e2468b; --s6:#14a9c9; --s7:#7646e8; --s8:#e23b2e;
+  --good:#11a36a; --warn:#e0b000; --serious:#f26b1d; --crit:#d62f22; --good-text:#0b7a4e;
+  --neutral:#c9c9c0; --accent-wash:#fff4b3;
+  --hl-yellow:#fff4b3; --hl-pink:#ffe0ec; --hl-blue:#e2e9ff; --hl-green:#dcf5e9; --hl-orange:#ffe6d6; --hl-purple:#ece4ff; --hl-gray:#efefe8;
+  --f-display:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+  --bw:2px; --sh:4px 4px 0 var(--shadow); --sh-sm:2px 2px 0 var(--shadow);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --page:#0d1320; --surface:#151c2b; --surface-2:#1b2435; --ink:#e7ebf2; --ink-2:#c3cbd8; --muted:#8a97ab;
-    --line:#263146; --line-2:#334059; --grid:#222c3e; --axis:#5c6a80; --ring:#7aa5f5; --shadow:rgba(0,0,0,.3);
-    --brand:#0a1424; --brand-ink:#e7ebf2; --verdict:#173057; --gold:#d8ae5a; --accent:#7aa5f5;
-    --s1:#6b9bf0; --s2:#f0955a; --s3:#3cc497; --s4:#e6bb3d; --s5:#e07aa6; --s6:#3fc0d8; --s7:#9b84e8; --s8:#ee6f63;
-    --good-text:#4cd3a2; --crit:#ee6f63; --neutral:#45526a; --accent-wash:#1c2a47;
-    --hl-yellow:#2a2516; --hl-pink:#2c1b26; --hl-blue:#18243d; --hl-green:#14282a; --hl-orange:#2c2018; --hl-purple:#221d38; --hl-gray:#1b2333;
-    --a-yellow:#d8ae5a; --a-blue:#6b9bf0; --a-green:#3cc497; --a-pink:#e07aa6; --a-orange:#f0955a; --a-purple:#9b84e8; --a-gray:#8a97ab;
-    --sh:0 1px 2px rgba(0,0,0,.3); --sh-sm:0 1px 2px rgba(0,0,0,.3);
+    --page:#111110; --surface:#1a1a18; --surface-2:#242421; --ink:#f2f2ea; --ink-2:#d6d6cd; --muted:#9d9d93;
+    --line:#f2f2ea; --line-2:#f2f2ea; --grid:#2c2c29; --axis:#f2f2ea; --ring:#f2f2ea; --shadow:#f2f2ea;
+    --signal:#ffd400; --signal-ink:#0a0a0a; --accent:#f2f2ea;
+    --s1:#6f8dff; --s2:#ff8a47; --s3:#34c98d; --s4:#f2c62e; --s5:#ff73ab; --s6:#45c6e2; --s7:#a07bff; --s8:#ff6357;
+    --good-text:#48d99b; --crit:#ff6357; --neutral:#4a4a44; --accent-wash:#3a3200;
+    --hl-yellow:#3a3200; --hl-pink:#3d1a29; --hl-blue:#1c2547; --hl-green:#123426; --hl-orange:#3d2412; --hl-purple:#2a1f4a; --hl-gray:#242421;
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --page:#0d1320; --surface:#151c2b; --surface-2:#1b2435; --ink:#e7ebf2; --ink-2:#c3cbd8; --muted:#8a97ab;
-  --line:#263146; --line-2:#334059; --grid:#222c3e; --axis:#5c6a80; --ring:#7aa5f5; --shadow:rgba(0,0,0,.3);
-  --brand:#0a1424; --brand-ink:#e7ebf2; --verdict:#173057; --gold:#d8ae5a; --accent:#7aa5f5;
-  --s1:#6b9bf0; --s2:#f0955a; --s3:#3cc497; --s4:#e6bb3d; --s5:#e07aa6; --s6:#3fc0d8; --s7:#9b84e8; --s8:#ee6f63;
-  --good-text:#4cd3a2; --crit:#ee6f63; --neutral:#45526a; --accent-wash:#1c2a47;
-  --hl-yellow:#2a2516; --hl-pink:#2c1b26; --hl-blue:#18243d; --hl-green:#14282a; --hl-orange:#2c2018; --hl-purple:#221d38; --hl-gray:#1b2333;
-  --a-yellow:#d8ae5a; --a-blue:#6b9bf0; --a-green:#3cc497; --a-pink:#e07aa6; --a-orange:#f0955a; --a-purple:#9b84e8; --a-gray:#8a97ab;
-  --sh:0 1px 2px rgba(0,0,0,.3); --sh-sm:0 1px 2px rgba(0,0,0,.3);
+  --page:#111110; --surface:#1a1a18; --surface-2:#242421; --ink:#f2f2ea; --ink-2:#d6d6cd; --muted:#9d9d93;
+  --line:#f2f2ea; --line-2:#f2f2ea; --grid:#2c2c29; --axis:#f2f2ea; --ring:#f2f2ea; --shadow:#f2f2ea;
+  --signal:#ffd400; --signal-ink:#0a0a0a; --accent:#f2f2ea;
+  --s1:#6f8dff; --s2:#ff8a47; --s3:#34c98d; --s4:#f2c62e; --s5:#ff73ab; --s6:#45c6e2; --s7:#a07bff; --s8:#ff6357;
+  --good-text:#48d99b; --crit:#ff6357; --neutral:#4a4a44; --accent-wash:#3a3200;
+  --hl-yellow:#3a3200; --hl-pink:#3d1a29; --hl-blue:#1c2547; --hl-green:#123426; --hl-orange:#3d2412; --hl-purple:#2a1f4a; --hl-gray:#242421;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--page);color:var(--ink);font:14.5px/1.6 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline;text-underline-offset:3px}
-.wrap{max-width:1200px;margin:0 auto;padding:0 16px 72px}
-::selection{background:var(--accent-wash);color:var(--ink)}
-:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:4px}
+html,body{margin:0;background:var(--page);color:var(--ink);font:15px/1.6 var(--f-body)}
+a{color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+a:hover{background:var(--signal);color:var(--signal-ink)}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:72px}
+::selection{background:var(--signal);color:var(--signal-ink)}
+:focus-visible{outline:3px solid var(--signal);outline-offset:2px;box-shadow:0 0 0 5px var(--ink)}
+h1,h2{font-family:var(--f-display);text-wrap:balance}
 
 /* ---- header */
-header.top{position:sticky;top:0;z-index:20;background:var(--brand);color:var(--brand-ink);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 1px 0 var(--gold)}
-header.top .wrap{padding-top:10px;padding-bottom:10px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--page)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--page);border-bottom:var(--bw) solid var(--ink)}
+header.top .wrap{max-width:1240px;padding-top:10px;padding-bottom:10px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
 @media (max-width:720px){header.top{position:static}}
-.brand{font-weight:600;font-size:14.5px;margin-right:auto;display:flex;align-items:center;gap:12px;line-height:1.2;color:var(--brand-ink)}
-.brand .logo{display:inline-grid;place-items:center;width:34px;height:34px;border:1.5px solid var(--gold);border-radius:8px;font-size:14px;font-weight:700;color:var(--gold);letter-spacing:-.02em}
-.brand small{display:block;font-weight:400;color:rgba(231,235,242,.7);font-size:12px}
-.ctl{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:inherit}
-header.top .ctl{color:rgba(231,235,242,.8)}
-select,input[type=number]{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:7px;padding:5px 8px}
-select:hover,input[type=number]:hover{border-color:var(--axis)}
-header.top select{background:rgba(255,255,255,.08);color:var(--brand-ink);border-color:rgba(255,255,255,.18)}
-header.top select option{color:#0f172a;background:#fff}
-input[type=range]{accent-color:var(--accent);width:100%}
-button{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:7px;padding:6px 12px;cursor:pointer;transition:background .12s,border-color .12s}
-button:hover{background:var(--surface-2);border-color:var(--axis)}
-button.on{background:var(--accent);border-color:var(--accent);color:#fff}
-header.top button{background:transparent;color:var(--brand-ink);border-color:rgba(255,255,255,.22)}
-header.top button:hover{background:rgba(255,255,255,.08)}
+.brand{flex:1 1 auto;margin-right:auto;display:flex;align-items:center;gap:10px;font-weight:800;font-size:15px;line-height:1.2}
+.brand .logo{display:inline-grid;place-items:center;width:32px;height:32px;background:var(--signal);color:var(--signal-ink);border:var(--bw) solid var(--ink);box-shadow:var(--sh-sm);font:800 14px/1 var(--f-display)}
+.brand small{display:block;font:400 11.5px/1.4 var(--f-mono);color:var(--muted)}
+.ctl{display:flex;align-items:center;gap:6px;font:500 11px var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--ink)}
+select,input[type=number]{font:600 13px var(--f-body);text-transform:none;letter-spacing:0;color:var(--ink);background:var(--surface);border:var(--bw) solid var(--ink);border-radius:0;padding:4px 8px;box-shadow:var(--sh-sm)}
+header.top select{max-width:170px}
+select:hover,input[type=number]:hover{background:var(--signal);color:var(--signal-ink)}
+input[type=range]{accent-color:var(--ink);width:100%}
+button{font:700 13px var(--f-body);color:var(--ink);background:var(--surface);border:var(--bw) solid var(--ink);border-radius:0;padding:5px 12px;cursor:pointer;box-shadow:var(--sh-sm);transition:transform .06s,box-shadow .06s}
+button:hover{background:var(--signal);color:var(--signal-ink)}
+button:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--shadow)}
+button.on{background:var(--ink);color:var(--page)}
+#themeBtn{margin-left:0}
 
-/* ---- hero */
-.kicker{display:inline-block;margin-top:36px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
-h1{font-size:clamp(32px,4.8vw,52px);line-height:1.08;margin:8px 0 12px;font-weight:700;letter-spacing:-.025em;color:var(--ink)}
-h1 .w{font-weight:700} h1 .w3{color:var(--accent)}
-h2{font-size:clamp(21px,2.6vw,27px);line-height:1.2;margin:4px 0 8px;font-weight:650;letter-spacing:-.015em}
-h3{font-size:15px;margin:0 0 4px;font-weight:600;letter-spacing:-.005em}
-.lede{color:var(--ink-2);max-width:860px;margin:0 0 8px;font-size:15px}
-nav.toc{display:flex;flex-wrap:wrap;gap:4px;margin:22px 0 8px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);width:fit-content;max-width:100%}
-nav.toc a{font-size:13px;font-weight:500;color:var(--ink-2);padding:6px 12px;border-radius:7px}
-nav.toc a:hover{background:var(--surface-2);color:var(--ink);text-decoration:none}
-nav.toc a b{display:inline-grid;place-items:center;min-width:20px;height:20px;margin-right:6px;border-radius:5px;background:var(--surface-2);color:var(--muted);font-size:11px;font-weight:600}
+/* ---- opening */
+.stage{padding-top:8px}
+.kicker{display:inline-block;margin-top:40px;font:500 11.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(40px,8vw,76px);line-height:.98;margin:12px 0 18px;font-weight:900;letter-spacing:-.035em;font-stretch:112%}
+h1 .w3{background:var(--signal);color:var(--signal-ink);padding:0 .1em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.lede{color:var(--ink-2);max-width:82ch;margin:0 0 8px}
+nav.toc{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 0}
+nav.toc a{display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;font-weight:600;font-size:13.5px;text-decoration:none;border:var(--bw) solid var(--ink);background:var(--surface);box-shadow:var(--sh-sm)}
+nav.toc a:hover{background:var(--signal);color:var(--signal-ink)}
+nav.toc a b{display:inline-grid;place-items:center;width:24px;height:24px;background:var(--ink);color:var(--page);font:700 12px/1 var(--f-mono)}
+nav.toc a:hover b{background:var(--signal-ink);color:var(--signal)}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:20px;margin:24px 0 0}
+.strip>div{padding:4px 0 4px 14px;border-left:var(--bw) solid var(--ink)}
+.strip b{display:block;font:800 18px/1.3 var(--f-display);margin-bottom:2px}
+.strip span{color:var(--ink-2)}
+
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;margin-top:28px;align-items:stretch}
+@media (max-width:900px){.hero{grid-template-columns:1fr}}
+.hero .verdict{background:var(--signal);color:var(--signal-ink);--ink:#0a0a0a;--ink-2:#262626;--muted:#3a3a33}
+.hero .verdict .qtag{color:var(--signal-ink)}
+.hero .big{font:900 clamp(64px,9vw,120px)/.88 var(--f-display);letter-spacing:-.05em;margin:12px 0 12px;font-stretch:112%}
+.hero #heroText{font-size:16px;color:#1a1a1a}
+.hero .verdict a{color:#0a0a0a}
 
 /* ---- sections */
-section.q{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);scroll-margin-top:84px;--qc:var(--hl-yellow);--qa:var(--a-yellow)}
-section.q[data-c="blue"]{--qc:var(--hl-blue);--qa:var(--a-blue)} section.q[data-c="green"]{--qc:var(--hl-green);--qa:var(--a-green)} section.q[data-c="pink"]{--qc:var(--hl-pink);--qa:var(--a-pink)}
-section.q[data-c="orange"]{--qc:var(--hl-orange);--qa:var(--a-orange)} section.q[data-c="purple"]{--qc:var(--hl-purple);--qa:var(--a-purple)} section.q[data-c="gray"]{--qc:var(--hl-gray);--qa:var(--a-gray)}
-.qtag{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--qa,var(--muted))}
-.qtag::before{content:"";width:18px;height:2px;background:var(--qa,var(--muted));border-radius:2px}
-.answer{position:relative;border:1px solid var(--line);border-left:3px solid var(--qa);border-radius:0 var(--r) var(--r) 0;padding:14px 18px;margin:14px 0 20px;background:var(--surface);box-shadow:var(--sh);max-width:980px;font-size:15px;color:var(--ink-2)}
+section.q{margin-top:80px;scroll-margin-top:84px;--qa:var(--ink)}
+.qtag{display:inline-flex;align-items:center;gap:10px;font:500 11.5px var(--f-mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.pip{display:inline-grid;place-items:center;width:28px;height:28px;background:var(--ink);color:var(--page);font:700 13px/1 var(--f-mono);letter-spacing:0}
+h2{font-size:clamp(28px,4.6vw,40px);line-height:1.05;margin:12px 0 12px;font-weight:850;letter-spacing:-.025em;font-stretch:108%}
+h3{font-size:16px;margin:0 0 4px;font-weight:750;letter-spacing:-.01em}
+.answer{border:var(--bw) solid var(--ink);box-shadow:var(--sh);padding:16px 20px;margin:18px 0 24px;background:var(--surface);font-size:15.5px;color:var(--ink-2)}
 .answer b{color:var(--ink)}
-.answer>b:first-child{display:inline-block;color:var(--qa);margin-right:4px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.answer>b:first-child{display:inline-block;font:700 11px var(--f-mono);background:var(--signal);color:var(--signal-ink);padding:2px 6px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 8px}
 
-.grid{display:grid;gap:16px}
-.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
 .g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
-.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;min-width:0;box-shadow:var(--sh)}
+.g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.card{background:var(--surface);border:var(--bw) solid var(--ink);border-radius:0;padding:18px 20px;min-width:0;box-shadow:var(--sh)}
 .card>h3:first-child{margin-bottom:2px}
 .card .sub{color:var(--muted);font-size:13px;margin:2px 0 12px}
 .tile{position:relative}
-section.q .card.tile{border-top:3px solid var(--qa);padding-top:14px}
-.tile .lbl{font-size:12px;color:var(--muted);font-weight:500}
-.tile .val{font-size:26px;font-weight:650;line-height:1.15;margin-top:4px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink)}
+.tile .lbl{font:500 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.tile .val{font:850 30px/1.1 var(--f-display);margin-top:6px;letter-spacing:-.025em;font-variant-numeric:tabular-nums;color:var(--ink)}
 .tile .note{font-size:12.5px;color:var(--muted);margin-top:4px}
-.hero .tile,#budgetSum .tile{border:1px solid var(--line);border-radius:8px;padding:10px 14px;background:var(--surface-2)}
-.hero .tile .val{font-size:22px}
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:16px;margin-top:20px}
-@media (max-width:860px){.hero{grid-template-columns:1fr}}
-.hero .verdict{background:var(--verdict,var(--brand));color:#e7ebf2;border-color:var(--verdict,var(--brand));--qa:var(--gold)}
-.hero .verdict .qtag{color:var(--gold)} .hero .verdict .qtag::before{background:var(--gold)}
-.hero .big{font-size:clamp(52px,8vw,88px);font-weight:700;line-height:.95;margin:12px 0 10px;letter-spacing:-.04em;color:#fff}
-.hero .verdict .ink2,.hero .verdict #heroText{color:rgba(231,235,242,.86)}
-.hero .verdict b{color:#fff}
-.hero .verdict .muted{color:rgba(231,235,242,.65)}
-.hero .verdict a{color:var(--gold)}
-.chart{width:100%;position:relative;margin-top:4px}
-.chart svg{display:block;width:100%;height:auto;overflow:visible;font-family:"Inter",system-ui,sans-serif}
-.chart svg circle{stroke:var(--surface);stroke-width:1.5px}
+.hero .tile,#budgetSum .tile{border:var(--bw) solid var(--ink);padding:10px 14px;background:var(--surface);box-shadow:none}
+.hero .tile .val{font-size:24px}
+.chart{width:100%;position:relative;margin-top:4px;scroll-margin-top:200px}
+.chart svg{display:block;width:100%;height:auto;overflow:visible;font-family:var(--f-body)}
+.chart svg circle{stroke:var(--ink);stroke-width:1.5px}
 .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink-2);margin:6px 0 8px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-.legend i.ln{height:3px;width:16px;border-radius:2px;vertical-align:3px}
-.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:8px}
+.legend i{display:inline-block;width:11px;height:11px;border:1.5px solid var(--ink);margin-right:6px;vertical-align:-1px}
+.legend i.ln{height:3px;width:16px;border:0;vertical-align:3px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:var(--bw) solid var(--ink)}
 .card .tbl-wrap{margin-top:6px}
 #measure,#mcBody,#modelDecision,#budgetSum{overflow-x:auto}
 #mcBody td,#measure td{white-space:normal}
 table{border-collapse:collapse;width:100%;font-size:13px}
-th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap;font-variant-numeric:tabular-nums}
 tbody tr:last-child td{border-bottom:0}
-th{font-weight:600;color:var(--muted);background:var(--surface-2);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;position:sticky;top:0;z-index:1}
+th{font:600 10.5px var(--f-mono);color:var(--page);background:var(--ink);text-transform:uppercase;letter-spacing:.08em;position:sticky;top:0;z-index:1}
 th.l,td.l{text-align:left}
 tr.sel td{background:var(--accent-wash)}
-tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
-tbody tr{cursor:pointer}
-tbody tr:hover td{background:var(--surface-2)}
+tr.sel td:first-child{box-shadow:inset 4px 0 0 var(--ink)}
+#b10 tbody tr,#allTbl tbody tr{cursor:pointer}
+#b10 tbody tr:hover td,#allTbl tbody tr:hover td{background:var(--hl-yellow)}
 .expl{white-space:normal!important;min-width:290px;text-align:left}
-.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:3px 10px;margin:3px 4px 3px 0;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:var(--surface-2);white-space:nowrap}
-.chip b{display:inline-block;width:8px;height:8px;border-radius:50%}
+#b10 th{white-space:normal;vertical-align:bottom;line-height:1.25}
+#b10 td{vertical-align:top}
+#b10 th,#b10 td{padding:7px 7px}
+#b10{font-size:12.5px}
+#b10 .chip{font-size:11px;padding:1px 7px}
+#b10 .expl{min-width:0;white-space:normal!important}
+#b10 .expl .chip{white-space:nowrap}
+#b10 .sub2{display:block;font-size:11.5px;font-weight:400;color:var(--muted);white-space:nowrap;margin-top:2px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:2px 9px;margin:3px 4px 3px 0;border:1.5px solid var(--ink);color:var(--ink);background:var(--surface);white-space:nowrap}
+.chip b{display:inline-block;width:9px;height:9px;border:1px solid var(--ink)}
 .muted{color:var(--muted)} .ink2{color:var(--ink-2)}
 .small{font-size:12.5px}
-.tip{position:fixed;pointer-events:none;z-index:50;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12.5px;box-shadow:0 8px 24px rgba(15,23,42,.14);max-width:310px;display:none;line-height:1.45}
-.tip .t{font-weight:600;margin:0 0 5px;padding:0 0 5px;border-bottom:1px solid var(--line)}
+.tip{position:fixed;pointer-events:none;z-index:50;background:var(--surface);color:var(--ink);border:var(--bw) solid var(--ink);padding:8px 10px;font-size:12.5px;box-shadow:var(--sh);max-width:310px;display:none;line-height:1.45}
+.tip .t{font-weight:800;margin:0 0 5px;padding:0 0 5px;border-bottom:1.5px solid var(--ink)}
 .tip .row{display:flex;gap:10px;justify-content:space-between}
-.tip .row span:last-child{font-variant-numeric:tabular-nums;font-weight:600}
-.tip i{border-radius:2px}
-details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;margin-top:14px;box-shadow:var(--sh)}
-details summary{cursor:pointer;font-weight:600;list-style:none;display:flex;align-items:center}
+.tip .row span:last-child{font-variant-numeric:tabular-nums;font-weight:700}
+details{background:var(--surface);border:var(--bw) solid var(--ink);padding:12px 18px;margin-top:16px;box-shadow:var(--sh)}
+details summary{cursor:pointer;font-weight:800;list-style:none;display:flex;align-items:center;gap:12px}
 details summary::-webkit-details-marker{display:none}
-details summary::before{content:"";width:7px;height:7px;margin:0 12px 0 2px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s}
-details[open] summary::before{transform:rotate(45deg)}
-.evid{font-size:12.5px;color:var(--muted);margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
-.evid code,code{font-family:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,monospace;font-size:11.5px;background:var(--surface-2);padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
-.ok{color:var(--good-text)} .bad{color:var(--crit);font-weight:600}
-.status{display:inline-flex;align-items:center;gap:6px;font-weight:600}
+details summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;background:var(--ink);color:var(--page);font:700 14px/1 var(--f-mono)}
+details[open] summary::before{content:"−"}
+.evid{font-size:12.5px;color:var(--muted);margin-top:12px;padding-top:10px;border-top:1.5px dashed var(--ink)}
+.evid code,code{font-family:var(--f-mono);font-size:11.5px;background:var(--surface-2);padding:1px 5px;border:1px solid var(--grid)}
+.ok{color:var(--good-text);font-weight:700} .bad{color:var(--crit);font-weight:700}
+.status{display:inline-flex;align-items:center;gap:6px;font-weight:700}
 .plan td input{width:64px}
-.budgetbar{height:10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;margin:14px 0 10px;position:relative}
-.budgetbar span{display:block;height:100%;background:var(--accent);border-radius:999px}
-.drill{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;margin-top:16px;box-shadow:var(--sh)}
-.drill.sel-row{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;background:var(--surface-2)}
+.budgetbar{height:20px;border:var(--bw) solid var(--ink);background:var(--surface);overflow:hidden;margin:14px 0 10px;position:relative}
+.budgetbar span{display:block;height:100%;background:var(--signal);border-right:var(--bw) solid var(--ink)}
+.drill{background:var(--surface);border:var(--bw) solid var(--ink);padding:16px 20px;margin-top:20px;box-shadow:var(--sh)}
+.drill.sel-row{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
 .kbd{font-size:12px;color:var(--muted)}
-.cols{columns:2 340px;column-gap:32px}
-.cols p{break-inside:avoid;margin:0 0 10px}
-.flag{font-weight:600}
-.evlink{display:inline-block;font-size:11.5px;font-weight:500;border:1px solid var(--line-2);border-radius:999px;padding:1px 8px;margin:2px 4px 2px 0;background:var(--surface);color:var(--accent);white-space:nowrap}
-.evlink:hover{background:var(--accent-wash);text-decoration:none}
+.cols{columns:1}
+.cols p{margin:0 0 10px}
+.flag{font-weight:700}
+.evlink{display:inline-block;font:600 11px var(--f-mono);border:1.5px solid var(--ink);padding:1px 7px;margin:2px 4px 2px 0;background:var(--surface);color:var(--ink);text-decoration:none;white-space:nowrap}
+.evlink:hover{background:var(--signal);color:var(--signal-ink)}
 #claims tr:target td,#claims tr.flash td{background:var(--hl-yellow)}
 #claims tr{scroll-margin-top:110px}
-.chart{scroll-margin-top:200px}
 .rng{font-size:11.5px;color:var(--muted);display:block}
-.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin:20px 0 0}
-.strip>div{padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);border-top:3px solid var(--s3)}
-.strip>div:nth-child(2){border-top-color:var(--s1)} .strip>div:nth-child(3){border-top-color:var(--s8)}
-.strip b{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
-.strip span{font-size:13px;color:var(--ink-2)}
-footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--muted)}
+footer.foot{margin-top:64px;border-top:var(--bw) solid var(--ink);padding-top:14px;font-size:12.5px;color:var(--muted)}
+/* ---- sidebar navigation (wide screens) */
+.side{display:none}
+@media (min-width:1180px){
+  body{padding-left:236px}
+  header.top{margin-left:-236px;padding-left:236px}
+  nav.toc{display:none}
+  .side{display:flex;flex-direction:column;position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:calc(env(safe-area-inset-top,0px) + 76px);width:204px;max-height:calc(100vh - 96px);overflow-y:auto;background:var(--surface);border:var(--bw) solid var(--ink);box-shadow:var(--sh);z-index:15}
+}
+.side .side-h{font:600 10.5px var(--f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:12px 14px 8px;border-bottom:1.5px solid var(--ink)}
+.side a{display:flex;align-items:center;gap:10px;padding:8px 12px;font-size:13.5px;font-weight:600;line-height:1.25;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--grid)}
+.side a:last-child{border-bottom:0}
+.side a b{flex:none;display:inline-grid;place-items:center;width:22px;height:22px;border:1.5px solid var(--ink);font:700 11px/1 var(--f-mono);background:var(--surface)}
+.side a small{display:block;font-weight:400;font-size:11.5px;color:var(--muted)}
+.side a:hover{background:var(--surface-2)}
+.side a.on{background:var(--signal);color:var(--signal-ink)}
+.side a.on b{background:var(--ink);color:var(--page);border-color:var(--ink)}
+.side a.on small{color:#3a3a33}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -189,8 +208,20 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
   <label class="ctl">Bank <select id="fBank"><option value="">All banks</option></select></label>
   <button id="themeBtn" type="button" title="Switch light/dark" aria-label="Switch light or dark theme">◐ Theme</button>
 </div></header>
+<nav class="side" aria-label="Sections">
+  <div class="side-h">On this page</div>
+  <a href="#top"><b>★</b><span>Verdict<small>The answer in one screen</small></span></a>
+  <a href="#q1"><b>1</b><span>Bottom 10<small>Luck, location or leak</small></span></a>
+  <a href="#q2"><b>2</b><span>Demand<small>What changed and why</small></span></a>
+  <a href="#q3"><b>3</b><span>Downtime<small>Play lost and when</small></span></a>
+  <a href="#q4"><b>4</b><span>Players<small>Wagered, paid, net</small></span></a>
+  <a href="#q5"><b>5</b><span>Comps<small>Cost and the May 1 change</small></span></a>
+  <a href="#model"><b>M</b><span>Model<small>Forecast vs baseline</small></span></a>
+  <a href="#q6"><b>6</b><span>$100k plan<small>What we'd fund</small></span></a>
+  <a href="#appendix"><b>A</b><span>Claims &amp; evidence<small>Sources and limits</small></span></a>
+</nav>
 
-<div class="wrap">
+<div class="stage" id="top"><div class="wrap">
 <div class="kicker">Floor analytics · bottom-10 review</div>
 <h1><span class="w w1">Luck,</span> <span class="w w2">location,</span> or a <span class="w w3">leak?</span></h1>
 <p class="lede">The general manager wants to replace the 10 slot machines that earned the least. This page tests every machine on that list against three explanations before anyone spends money: <b>luck</b> (results swing around the expected win), <b>location</b> (a quiet spot or short time on the floor), and a <b>leak</b> (downtime, or a machine paying out more than its settings allow). The period, zone and bank controls at the top update every view.</p>
@@ -217,10 +248,12 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
     <div id="heroCmp"></div>
   </div>
 </div>
+</div></div>
+<div class="wrap">
 
 <!-- ===================================================== Q1 -->
 <section class="q" id="q1" data-c="yellow">
-  <div class="qtag">Question 1</div>
+  <div class="qtag"><span class="pip">1</span>Question 1</div>
   <h2>Which machines are truly underperforming?</h2>
   <p class="lede">Ranking by raw house win mixes up five things. For each machine we split the gap to the median machine into parts that add up exactly: the <b>game</b> it runs, its <b>time on the floor</b>, <b>downtime</b>, its <b>location</b>, the <b>machine itself</b> (expected win compared with the same game in the same zone), and <b>luck</b> (actual house win minus theo).</p>
   <div class="answer" id="q1answer"></div>
@@ -285,7 +318,7 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
 
 <!-- ===================================================== Q2 -->
 <section class="q" id="q2" data-c="blue">
-  <div class="qtag">Question 2</div>
+  <div class="qtag"><span class="pip">2</span>Question 2</div>
   <h2>What changed in demand, and why?</h2>
   <div class="answer" id="q2answer"></div>
   <div class="grid g4" id="q2tiles"></div>
@@ -315,7 +348,7 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
 
 <!-- ===================================================== Q3 -->
 <section class="q" id="q3" data-c="green">
-  <div class="qtag">Question 3</div>
+  <div class="qtag"><span class="pip">3</span>Question 3</div>
   <h2>How much play was lost to downtime, and when?</h2>
   <div class="answer" id="q3answer"></div>
   <div class="grid g4" id="q3tiles"></div>
@@ -349,7 +382,7 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
 
 <!-- ===================================================== Q4 -->
 <section class="q" id="q4" data-c="pink">
-  <div class="qtag">Question 4</div>
+  <div class="qtag"><span class="pip">4</span>Question 4</div>
   <h2>What did tracked players wager, get back and net?</h2>
   <p class="lede">Loyalty-card (carded) play only, about 66% of coin-in. Uncarded players are invisible here. Pick a guest group:</p>
   <div class="drill sel-row" style="margin-top:6px">
@@ -381,7 +414,7 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
 
 <!-- ===================================================== Q5 -->
 <section class="q" id="q5" data-c="orange">
-  <div class="qtag">Question 5</div>
+  <div class="qtag"><span class="pip">5</span>Question 5</div>
   <h2>What did the comp program cost, and did anything change?</h2>
   <div class="answer" id="q5answer"></div>
   <div class="grid g4" id="q5tiles"></div>
@@ -406,7 +439,7 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
 
 <!-- ===================================================== MODEL -->
 <section class="q" id="model" data-c="purple">
-  <div class="qtag">Model &amp; validation</div>
+  <div class="qtag"><span class="pip">M</span>Model &amp; validation</div>
   <h2>Forecasting daily floor coin-in</h2>
   <p class="lede">We trained on <b>January–April</b>, froze the forecasts, then tested on <b>May–June</b>. The baseline is a constant training-period daily mean. The models are the weekday mean, weekday mean × an uplift for events already announced by May 1 (so the Locals Appreciation Week, announced May 26, is <i>not</i> flagged), and weekday mean × a linear trend. Each forecast uses only information available on May 1, 2025.</p>
   <div class="answer" id="modelAnswer"></div>
@@ -430,7 +463,7 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
 
 <!-- ===================================================== Q6 -->
 <section class="q" id="q6" data-c="yellow">
-  <div class="qtag">Question 6</div>
+  <div class="qtag"><span class="pip">6</span>Question 6</div>
   <h2>How we would spend $100,000 (July 1–30, 2025)</h2>
   <p class="lede">Up to three action types. Cost = quantity × (unit cost + daily cost × days left after the lead time); fixed packages are charged in full. Benefits are 30-day <b>expected house win (theo)</b> after the lead time and are estimates, not promises. Move the sliders to test the assumptions.</p>
   <div class="answer" id="q6answer"></div>
@@ -460,7 +493,7 @@ footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;fo
 
 <!-- ===================================================== APPENDIX -->
 <section class="q" id="appendix" data-c="gray">
-  <div class="qtag">Appendix</div>
+  <div class="qtag"><span class="pip">A</span>Appendix</div>
   <h2>Claims &amp; evidence</h2>
   <p class="lede">Each claim lists the table or query it comes from, the result, the alternative explanation we tested, and its limitation. Every number is rebuilt by <code>python analysis/build_data.py</code> from the files in <code>data/</code>. The same appendix is in <code>CLAIMS_AND_EVIDENCE.md</code>, and the 400-word summary is in <code>WRITEUP.md</code>.</p>
   <div class="card"><div class="tbl-wrap"><table id="claims"></table></div></div>
@@ -592,21 +625,24 @@ function lineChart(id, series, o={}){
 
 // Vertical bar chart: cats [{k,label,vals:[{v,color,name}]}] grouped bars
 function colChart(id, cats, o={}){
-  const W=o.W||cw(id), H=o.H||220, m={l:o.ml||56,r:12,t:16,b:o.mb||28};
+  const W=o.W||cw(id), m={l:o.ml||56,r:12,t:16,b:o.mb||28};
+  const band0=(W-m.l-m.r)/Math.max(1,cats.length), split=band0<130&&cats.some(c=>(c.label||'').includes(' · ')); if(split) m.b+=13;
+  const H=(o.H||220)+(split?13:0), fs=band0<60?9:11;
   const svg=svgFor(id,W,H); const vals=cats.flatMap(c=>c.vals.map(v=>v.v)).filter(v=>v!=null);
   if(!vals.length){ txt(svg,W/2,H/2,'No data for this selection',{'text-anchor':'middle'}); return; }
   let lo=Math.min(0,...vals), hi=Math.max(0,...vals); if(o.labels&&lo<0) lo-=(hi-lo)*0.15; if(o.labels&&hi>0) hi+=(hi-lo)*0.06; const ticks=niceTicks(lo,hi,o.nt||4); lo=Math.min(lo,ticks[0]); hi=Math.max(hi,ticks[ticks.length-1]);
   const Y=v=>m.t+(hi-v)/((hi-lo)||1)*(H-m.t-m.b); yAxis(svg,Y,ticks,m.l,W-m.r,o.yf||fmt.usdk);
-  const band=(W-m.l-m.r)/cats.length, ng=Math.max(...cats.map(c=>c.vals.length)); const bw=Math.min(o.bw||24,(band*0.7-(ng-1)*2)/ng);
-  cats.forEach((c,i)=>{ const cx=m.l+band*i+band/2; const gw=ng*bw+(ng-1)*2;
-    c.vals.forEach((v,j)=>{ if(v.v==null) return; const x=cx-gw/2+j*(bw+2); const up=v.v>=0; const y0=Y(0), y1=Y(v.v);
+  const band=(W-m.l-m.r)/cats.length, ng=Math.max(...cats.map(c=>c.vals.length)); const gp=(o.labels&&ng>1)?8:2; const bw=Math.min(o.bw||24,(band*0.7-(ng-1)*gp)/ng);
+  cats.forEach((c,i)=>{ const cx=m.l+band*i+band/2; const gw=ng*bw+(ng-1)*gp;
+    c.vals.forEach((v,j)=>{ if(v.v==null) return; const x=cx-gw/2+j*(bw+gp); const up=v.v>=0; const y0=Y(0), y1=Y(v.v);
       const p=el('path',{d:rbar(x,Math.min(y0,y1),bw,Math.abs(y1-y0),4,up?'up':'down'),fill:v.color||css('--s1')},svg);
       const hit=el('rect',{x:x-2,y:m.t,width:bw+4,height:H-m.t-m.b,fill:'transparent'},svg);
       hit.addEventListener('mousemove',e=>{p.setAttribute('opacity',.8); showTip(e,tipRows(c.label,(c.tipRows||c.vals.map(q=>[q.name||'',(o.tf||o.yf||fmt.usd)(q.v),q.color]))));});
       hit.addEventListener('mouseleave',()=>{p.setAttribute('opacity',1);hideTip();});
-      if(o.labels){ txt(svg,x+bw/2,up?y1-4:y1+12,(o.lf||o.yf||fmt.usdk)(v.v),{'text-anchor':'middle',fill:css('--ink-2')}); }
+      if(o.labels){ txt(svg,x+bw/2,up?y1-4:y1+12,(o.lf||o.yf||fmt.usdk)(v.v),{'text-anchor':'middle',fill:css('--ink-2'),'font-size':fs}); }
     });
-    txt(svg,cx,H-m.b+16,c.label,{'text-anchor':'middle'}); });
+    if(split&&c.label.includes(' · ')){ const [a1,a2]=c.label.split(' · '); txt(svg,cx,H-m.b+16,a1,{'text-anchor':'middle','font-size':fs}); txt(svg,cx,H-m.b+29,a2,{'text-anchor':'middle','font-size':fs}); }
+    else txt(svg,cx,H-m.b+16,c.label,{'text-anchor':'middle','font-size':fs}); });
   el('line',{x1:m.l,x2:W-m.r,y1:Y(0),y2:Y(0),stroke:css('--axis')},svg);
   if(o.refY!=null){ el('line',{x1:m.l,x2:W-m.r,y1:Y(o.refY),y2:Y(o.refY),stroke:css('--ink-2'),'stroke-width':1.5},svg); txt(svg,W-m.r,Y(o.refY)-4,o.refLabel||'',{'text-anchor':'end',fill:css('--ink-2')}); }
 }
@@ -684,7 +720,7 @@ function renderQ1(){
   const weak=bottom.filter(a=>a.verdict.includes('weak')).length;
   $('#heroNum').textContent = `${weak} of 10`;
   const nLoc=bottom.filter(a=>a.verdict.includes('location')).length, nTen=bottom.filter(a=>a.verdict.includes('tenure')).length, nLeak=bottom.filter(a=>a.verdict.includes('leak')).length;
-  $('#heroText').innerHTML = `machines on the manager's bottom-10 list (${periodLabel()}) are truly weak once exposure, location and luck are accounted for. <b>${nLoc}</b> sit in a weak location (${[...new Set(bottom.filter(a=>a.verdict.includes('location')).map(a=>ZN[a.zone]))].join(', ')||'–'}), <b>${nTen}</b> were on the floor for only part of the period, and <b>${nLeak}</b> ${nLeak===1?'shows':'show'} a payout pattern that needs an <b>inspection</b>, not a replacement. <span class="muted">Replacing all 10 would cost $33,800 leased or $220,000 bought, and would fix ${weak?`only ${weak} of them`:'none of these causes'}.</span>`;
+  $('#heroText').innerHTML = `of the manager's bottom 10 (${periodLabel()}) are actually bad machines once you allow for where they sit, how long they were on the floor, and luck. <b>${nLoc}</b> ${nLoc===1?'is':'are'} in a quiet zone (${[...new Set(bottom.filter(a=>a.verdict.includes('location')).map(a=>ZN[a.zone]))].join(', ')||'–'}), <b>${nTen}</b> ${nTen===1?'was':'were'} only on the floor for part of the period, and <b>${nLeak}</b> ${nLeak===1?'is':'are'} paying out more than ${nLeak===1?'it':'they'} should, which calls for an <b>inspection</b>. <span class="muted">Replacing all 10 would cost $33,800 leased or $220,000 bought, and it would fix ${weak?`only ${weak} of them`:'none of that'}.</span>`;
   $('#heroChips').innerHTML = Object.keys(V).filter(k=>counts[k]).map(k=>`<div style="margin:4px 0">${chip(k)} <span class="ink2 small">${counts[k]} machine${counts[k]>1?'s':''}: ${bottom.filter(a=>a.verdict[0]===k).map(a=>a.id).join(', ')}</span></div>`).join('');
 
   const zoneAll = L.reduce((acc,a)=>{ (acc[a.zone]=acc[a.zone]||{el:0,ef:0}); acc[a.zone].el+=a.el; acc[a.zone].ef+=a.ef; return acc; },{});
@@ -694,11 +730,11 @@ function renderQ1(){
     const weakOff=L.filter(a=>a.tenure>=0.6&&a.ihi<0.9&&!bottom.some(b=>b.id===a.id)).sort((a,b)=>a.idx-b.idx);
     const desc=a=>`<b>${a.id}</b> (${ZN[a.zone]}, index ${a.idx.toFixed(2)})`, list=x=>x.length>1?x.slice(0,-1).map(desc).join(', ')+' and '+desc(x[x.length-1]):desc(x[0]);
     const m1158=L.find(a=>a.id==='M-1158');
-    const lead = nB40>=6 ? `the manager's list is mostly a map of <b>Back Forty</b>: ${nB40} of the 10 sit there` : `${nB40} of the 10 sit in <b>Back Forty</b>`;
-    const weakTxt = !weakB.length ? 'None of the bottom 10 is clearly worse than identical games at the same location.'
-      : `Only ${list(weakB)} ${weakB.length===1?'is':'are'} clearly worse than identical games at the same location, so ${weakB.length===1?'it is the one real replacement candidate':'they are the real replacement candidates'}.`;
-    const offTxt = weakOff.length ? ` ${list(weakOff)} ${weakOff.length===1?'is':'are'} also clearly weaker than ${weakOff.length===1?'its':'their'} peers but ${weakOff.length===1?'is':'are'} <b>not on this list</b>, because a high-edge game hides the weakness in raw totals.` : '';
-    $('#q1answer').innerHTML = `<b>Answer:</b> ${periodLabel()}: ${lead}, and a machine in that zone earns about ${fmt.pct(1-(b40||0),0)} less theo than the same game at an average spot. ${weakTxt}${offTxt} The one real leak is <b>M-1158</b>: over the six months it paid out on 38.6% of spins against a configured 31.5%${m1158?`, and its house win was ${fmt.usd(m1158.theo-m1158.hw)} below theo in this period`:''}.`; }
+    const lead = nB40>=6 ? `In ${periodLabel()}, ${nB40} of the manager's 10 machines sit in <b>Back Forty</b>, so the list mostly shows us where the quiet corner is` : `In ${periodLabel()}, ${nB40} of the 10 sit in <b>Back Forty</b>`;
+    const weakTxt = !weakB.length ? 'When we compare each one with the same game in the same zone, none of them comes out clearly worse.'
+      : `Compared with the same game in the same zone, only ${list(weakB)} ${weakB.length===1?'is':'are'} clearly worse, so ${weakB.length===1?"that's the one":"those are the ones"} worth replacing.`;
+    const offTxt = weakOff.length ? ` ${list(weakOff)} ${weakOff.length===1?'is':'are'} also clearly weaker than ${weakOff.length===1?'its':'their'} neighbours, but ${weakOff.length===1?"doesn't":"don't"} show up on the list because ${weakOff.length===1?'it runs a high-edge game that props':'they run high-edge games that prop'} up the raw totals.` : '';
+    $('#q1answer').innerHTML = `<b>Answer:</b> ${lead}. A machine there earns about ${fmt.pct(1-(b40||0),0)} less than the same game would at an average spot on the floor. ${weakTxt}${offTxt} The one machine that does need attention is <b>M-1158</b>. It paid out on 38.6% of spins over the six months when it's set to 31.5%${m1158?`, and it won ${fmt.usd(m1158.theo-m1158.hw)} less than it should have in this period`:''}. That's a reason to open it up and check it, not to replace it.`; }
 
   // decomposition chart
   $('#decompSub').textContent = `${periodLabel()} · median machine house win ${fmt.usd(AG.med)} · bars to the left of the line are dollars below the median`;
@@ -707,8 +743,8 @@ function renderQ1(){
 
   // bottom10 table
   const tb=$('#b10');
-  tb.innerHTML = `<thead><tr><th class="l">Machine</th><th class="l">Zone · bank</th><th class="l">Game · edge</th><th>House win</th><th>Theo</th><th>Luck z</th><th>Days on floor</th><th>Location factor</th><th>Machine index</th><th>Hit-rate z</th><th class="l">Explanation</th></tr></thead><tbody>`+
-    bottom.map(a=>`<tr data-id="${a.id}" class="${S.sel===a.id?'sel':''}"><td class="l"><b>${a.id}</b>${MGR10.includes(a.id)?'':' <span class="muted small">(new in period)</span>'}</td><td class="l">${ZN[a.zone]} · ${a.bank}</td><td class="l" title="${fmt.pct(1-a.rtp,0)} house edge, ${a.vol.replace('_',' ')} volatility">${esc(a.theme)} <span class="muted">${fmt.pct(1-a.rtp,0)}</span></td><td>${fmt.usd(a.hw)}</td><td>${fmt.usd(a.theo)}</td><td class="${a.z<-1.96?'bad':''}">${fmt.sgn(a.z)}</td><td>${a.days} / ${AG.nDays}</td><td class="${a.locf<0.85?'bad':''}">${a.locf.toFixed(2)}</td><td>${a.idx.toFixed(2)} <span class="muted">[${a.ilo.toFixed(2)}–${a.ihi.toFixed(2)}]</span></td><td class="${a.hit&&a.hit[2]>4?'bad':''}">${a.hit?fmt.sgn(a.hit[2],1):'–'}</td><td class="l expl">${a.verdict.map(chip).join('')}</td></tr>`).join('')+'</tbody>';
+  tb.innerHTML = `<thead><tr><th class="l">Machine</th><th class="l">Game</th><th>House win</th><th>Theo</th><th>Luck z</th><th>Days on floor</th><th>Location factor</th><th>Machine index</th><th>Hit-rate z</th><th class="l">Explanation</th></tr></thead><tbody>`+
+    bottom.map(a=>`<tr data-id="${a.id}" class="${S.sel===a.id?'sel':''}"><td class="l"><b>${a.id}</b>${MGR10.includes(a.id)?'':' <span class="muted small">(new in period)</span>'}<span class="sub2">${ZN[a.zone]} · ${a.bank}</span></td><td class="l" title="${fmt.pct(1-a.rtp,0)} house edge, ${a.vol.replace('_',' ')} volatility">${esc(a.theme)}<span class="sub2">${fmt.pct(1-a.rtp,0)} edge</span></td><td>${fmt.usd(a.hw)}</td><td>${fmt.usd(a.theo)}</td><td class="${a.z<-1.96?'bad':''}">${fmt.sgn(a.z)}</td><td>${a.days} / ${AG.nDays}</td><td class="${a.locf<0.85?'bad':''}">${a.locf.toFixed(2)}</td><td>${a.idx.toFixed(2)}<span class="sub2">${a.ilo.toFixed(2)}–${a.ihi.toFixed(2)}</span></td><td class="${a.hit&&a.hit[2]>4?'bad':''}">${a.hit?fmt.sgn(a.hit[2],1):'–'}</td><td class="l expl">${a.verdict.map(chip).join('')}</td></tr>`).join('')+'</tbody>';
   tb.querySelectorAll('tbody tr').forEach(tr=>tr.addEventListener('click',()=>{ S.sel=tr.dataset.id; renderMachine(); tb.querySelectorAll('tr').forEach(x=>x.classList.toggle('sel',x.dataset.id===S.sel)); }));
 
   // fair ranking
@@ -737,14 +773,14 @@ function renderQ1(){
 function drawDecomp(rows){
   const W=cw('decompChart',900), rh=30, m={l:118,r:20,t:10,b:26}, H=m.t+m.b+rows.length*rh; const svg=svgFor('decompChart',W,H);
   let lo=0, hi=0; rows.forEach(a=>{ let neg=0,pos=0; DEC.forEach(d=>{const v=a.dec[d[0]]; if(v<0) neg+=v; else pos+=v;}); lo=Math.min(lo,neg); hi=Math.max(hi,pos); });
-  const ticks=niceTicks(lo,hi,6); lo=Math.min(lo,ticks[0]); hi=Math.max(hi,ticks[ticks.length-1]);
+  const ticks=niceTicks(lo,hi,W<520?3:6); lo=Math.min(lo,ticks[0]); hi=Math.max(hi,ticks[ticks.length-1]);
   const X=v=>m.l+(v-lo)/(hi-lo)*(W-m.l-m.r);
   ticks.forEach(t=>{ el('line',{x1:X(t),x2:X(t),y1:m.t,y2:H-m.b,stroke:css('--grid')},svg); txt(svg,X(t),H-m.b+16,fmt.usdk(t),{'text-anchor':'middle'}); });
   el('line',{x1:X(0),x2:X(0),y1:m.t,y2:H-m.b,stroke:css('--ink-2'),'stroke-width':1.5},svg);
   rows.forEach((a,i)=>{ const cy=m.t+i*rh+rh/2, bh=14; let negAcc=0,posAcc=0;
     const segs=DEC.map(d=>({k:d[0],name:d[1],c:css(d[2]),v:a.dec[d[0]]}));
     segs.forEach(s=>{ if(Math.abs(s.v)<1) return; let x0,x1; if(s.v<0){ x1=X(negAcc); negAcc+=s.v; x0=X(negAcc);} else { x0=X(posAcc); posAcc+=s.v; x1=X(posAcc);}
-      el('rect',{x:x0+1,y:cy-bh/2,width:Math.max(0.5,x1-x0-2),height:bh,fill:s.c,stroke:css('--surface'),'stroke-width':1},svg); });
+      el('rect',{x:x0+1,y:cy-bh/2,width:Math.max(0.5,x1-x0-2),height:bh,fill:s.c,stroke:css('--ink'),'stroke-width':1},svg); });
     const net=a.hw-a.med; el('circle',{cx:X(net),cy,r:5,fill:css('--ink'),stroke:css('--surface'),'stroke-width':2},svg);
     const lt=txt(svg,m.l-8,cy+4,a.id,{'text-anchor':'end',fill:css('--ink-2'),'font-size':12,'font-weight':S.sel===a.id?700:400});
     const hit=el('rect',{x:0,y:cy-rh/2,width:W,height:rh,fill:'transparent',style:'cursor:pointer'},svg);
@@ -846,7 +882,7 @@ function renderQ2(){
     ['Back Forty during closure', fmt.sgnPct(did.b40_change,0), `theo/hr vs ${fmt.sgnPct(did.rest_change,0)} for the rest of the floor · ≈${fmt.usdk(did.lost_theo)} theo lost`],
   ].map(t=>`<div class="card tile"><div class="lbl">${t[0]}</div><div class="val">${t[1]}</div><div class="note">${t[2]}</div></div>`).join('');
   const city=B.city;
-  $('#q2answer').innerHTML = `<b>Answer:</b> Over the six months, floor demand was flat to slightly down. February and March were strongest, and June was weakest, about ${(()=>{const pm=m=>{const x=B.days.filter(d=>d.d.startsWith(m));return x.reduce((s,d)=>s+d.ci,0)/x.length;}; return fmt.sgnPct(pm('2025-06')/pm('2025-02')-1,0);})()} per day against February. This tracks Las Vegas visitation, which fell year on year every month (real LVCVA data: ${city.map(c=>fmt.sgnPct(c.yoy,0)).join(', ')}). Weekends carry the floor: Saturday averages about 1.6× Tuesday. Events add a modest ~${evLift==null?'–':fmt.pct(evLift,0)}. The one sharp, local change was <b>Back Forty</b>: while the Main Entrance ↔ Back Forty walkway was closed for renovation (Mar 3–Apr 6), its expected win per hour fell ${fmt.pct(-did.b40_change,0)} while the rest of the floor rose ${fmt.pct(did.rest_change,0)}. The zone depends on foot traffic from the entrance.`;
+  $('#q2answer').innerHTML = `<b>Answer:</b> Demand held roughly steady over the six months, with a slight slide. February and March were the busiest months and June was the quietest, about ${(()=>{const pm=m=>{const x=B.days.filter(d=>d.d.startsWith(m));return x.reduce((s,d)=>s+d.ci,0)/x.length;}; return fmt.pct(1-pm('2025-06')/pm('2025-02'),0);})()} a day below February. That matches Las Vegas as a whole, where visitor numbers were down on the year every month (LVCVA: ${city.map(c=>fmt.sgnPct(c.yoy,0)).join(', ')}). Weekends do the heavy lifting: a Saturday brings in about 1.6 times what a Tuesday does. Events help, but only by about ${evLift==null?'–':fmt.pct(evLift,0)}. The one big local change was in <b>Back Forty</b>. While the walkway from the Main Entrance was closed for renovation (Mar 3 to Apr 6), Back Forty's expected win per hour dropped ${fmt.pct(-did.b40_change,0)} while the rest of the floor rose ${fmt.pct(did.rest_change,0)}. Players reach that zone from the entrance, and when the path closed, fewer of them made it there.`;
   // zone weekly theo/hr
   const zs=Object.keys(ZN).sort();
   const sel=S.zone || (S.bank? (B.machines.find(m=>m.bank===S.bank)||{}).zone : '');
@@ -894,15 +930,30 @@ function renderQ3(){
   const g=F.filter(f=>f.shift==='grave'), full2=F.filter(f=>f.shift!=='grave'&&f.actual>=f.planned&&f.planned>=2), sh=F.filter(f=>f.actual<f.planned);
   const ridge=MM.filter(r=>inPeriod(r.month)&&MACH[r.id].manu==='Ridgeline'), oth=MM.filter(r=>inPeriod(r.month)&&MACH[r.id].manu!=='Ridgeline');
   const rr=ridge.reduce((s,r)=>s+r.f,0)/Math.max(1,ridge.reduce((s,r)=>s+r.days,0)), ro=oth.reduce((s,r)=>s+r.f,0)/Math.max(1,oth.reduce((s,r)=>s+r.days,0));
-  $('#q3answer').innerHTML=`<b>Answer:</b> Downtime is a small leak, not the main story. The floor was available ${fmt.pct(1-downH/sched,1)} of scheduled hours, and downtime cost about ${fmt.usdk(lost)} of expected win (${fmt.pct(lost/theo,1)}) in ${periodLabel()}. It is also not why the bottom 10 earned less: ${(()=>{ const b=[...AG.list].sort((a,c)=>a.hw-c.hw).slice(0,10); return `their downtime cost at most ${fmt.usd(Math.max(...b.map(a=>a.lt)))} each, against gaps of ${fmt.usdk(Math.min(...b.map(a=>a.med-a.hw)))}–${fmt.usdk(Math.max(...b.map(a=>a.med-a.hw)))} to the median machine`; })()}. The pattern is <b>when</b>. ${(()=>{ const parts=[[full2,'on a fully staffed two-tech shift'],[g,'on the one-tech grave shift'],[sh,'when a shift is short-staffed']].filter(([x])=>x.length).map(([x,l])=>`${mean(x.map(f=>f.wait)).toFixed(1)} h ${l}`); return parts.length? 'Faults wait for a technician '+(parts.length>1? parts.slice(0,-1).join(', ')+' and '+parts[parts.length-1] : parts[0])+'.' : 'No faults in this selection.'; })()} Weekends wait longest. Ridgeline machines fault ${(rr/ro).toFixed(1)}× as often as the other two makers.`;
+  $('#q3answer').innerHTML=`<b>Answer:</b> Downtime costs us a little, but it isn't the main problem. Machines were up ${fmt.pct(1-downH/sched,1)} of scheduled hours, and the time they were down cost about ${fmt.usdk(lost)} of expected win (${fmt.pct(lost/theo,1)}) in ${periodLabel()}. It doesn't explain the bottom 10 either: ${(()=>{ const b=[...AG.list].sort((a,c)=>a.hw-c.hw).slice(0,10); return `none of them lost more than ${fmt.usd(Math.max(...b.map(a=>a.lt)))} to downtime, yet they trail the median machine by ${fmt.usdk(Math.min(...b.map(a=>a.med-a.hw)))} to ${fmt.usdk(Math.max(...b.map(a=>a.med-a.hw)))}`; })()}. Where downtime matters is <b>timing</b>. ${(()=>{ const parts=[[full2,'on a fully staffed two-tech shift'],[g,'on the one-tech grave shift'],[sh,'when a shift is short-staffed']].filter(([x])=>x.length).map(([x,l])=>`${mean(x.map(f=>f.wait)).toFixed(1)} h ${l}`); return parts.length? 'A broken machine waits for a technician about '+(parts.length>1? parts.slice(0,-1).join(', ')+' and '+parts[parts.length-1] : parts[0])+'.' : 'There were no faults in this selection.'; })()} Weekends are the slowest. Ridgeline machines also break down ${(rr/ro).toFixed(1)} times as often as the other two brands.`;
 }
 
 // ---------- Q4
+function syncGuestOptions(){
+  const dims=[['gTier','tier'],['gRegion','region'],['gAge','age']];
+  dims.forEach(([id,k])=>{ const others=dims.filter(d=>d[0]!==id);
+    [...document.getElementById(id).options].forEach(o=>{ if(!o.value) return;
+      if(o.dataset.lbl==null) o.dataset.lbl=o.textContent;
+      const ok=PG.some(r=>inPeriod(r.m)&&r[k]===o.value&&others.every(([oid,ok2])=>!S[oid]||r[ok2]===S[oid]));
+      o.disabled=!ok && o.value!==S[id]; o.textContent=o.dataset.lbl+(ok?'':' (no players)'); }); });
+}
 function renderQ4(){
   const R=PG.filter(r=>inPeriod(r.m)&&(!S.gTier||r.tier===S.gTier)&&(!S.gRegion||r.region===S.gRegion)&&(!S.gAge||r.age===S.gAge));
   const s=k=>R.reduce((a,r)=>a+r[k],0);
   const ci=s('ci'),pay=s('pay'),net=s('net'),theo=s('theo'),played=s('played'),ahead=s('ahead'),ctb=s('ctb'),cc=s('cc');
   const grp=[S.gTier,S.gRegion,S.gAge].filter(Boolean).join(' · ')||'All tracked players';
+  syncGuestOptions();
+  if(!R.length||ci<=0){
+    $('#q4answer').innerHTML=`<b>No players</b> No tracked players match <b>${esc(grp)}</b> in ${periodLabel()}. That combination doesn't occur in the loyalty data. Clear one of the guest selections to see results. <div style="margin-top:10px"><button type="button" id="q4clear">Clear guest filters</button></div>`;
+    $('#q4tiles').innerHTML=''; $('#grpTbl').innerHTML='<tbody><tr style="cursor:default"><td class="l muted" style="white-space:normal;padding:14px">No rows for this group.</td></tr></tbody>';
+    $('#q4clear').onclick=()=>{ ['gTier','gRegion','gAge'].forEach(id=>{ const s=document.getElementById(id); s.value=''; s.dispatchEvent(new Event('change',{bubbles:true})); }); };
+    return;
+  }
   $('#q4tiles').innerHTML=[
     ['Wagered (coin-in)',fmt.usdk(ci),grp],
     ['Paid back',fmt.usdk(pay),`${fmt.pct(pay/ci,2)} of coin-in`],
@@ -911,7 +962,7 @@ function renderQ4(){
     ['Tracked contribution',fmt.usdk(ctb),`house win + F&B cash − F&B cost · comps ${fmt.usdk(cc)}`],
   ].map(t=>`<div class="card tile"><div class="lbl">${t[0]}</div><div class="val">${t[1]}</div><div class="note">${t[2]}</div></div>`).join('');
   const C=B.conc;
-  $('#q4answer').innerHTML=`<b>Answer:</b> In ${periodLabel()}, ${esc(grp.toLowerCase())} wagered ${fmt.usdk(ci)}, got back ${fmt.usdk(pay)} and lost ${fmt.usdk(-net)} net. That is within ${fmt.pct(Math.abs((net+theo)/theo),1)} of what the game math predicts (theo ${fmt.usdk(theo)}), so the tracked floor as a whole was not lucky or unlucky. Results are very concentrated: over six months the top 1% of players produced ${fmt.pct(C.theo[1][1],0)} of theo and ${fmt.pct(C.loss[1][1],0)} of net losses, and the top 10% produced ${fmt.pct(C.theo[3][1],0)} of theo. Only ${fmt.pct(C.ahead_share,0)} of players finished the half-year ahead. Concentration this high is a reason for responsible-gaming checks on the heaviest losers, <b>not</b> a target list for more play.`;
+  $('#q4answer').innerHTML=`<b>Answer:</b> In ${periodLabel()}, ${esc(grp.toLowerCase())} wagered ${fmt.usdk(ci)}, got ${fmt.usdk(pay)} back and lost ${fmt.usdk(-net)} overall. That's within ${fmt.pct(Math.abs((net+theo)/theo),1)} of what the game maths predicts (theo ${fmt.usdk(theo)}), so as a group they weren't especially lucky or unlucky. The results are lopsided, though. Over six months, the top 1% of players produced ${fmt.pct(C.theo[1][1],0)} of theo and ${fmt.pct(C.loss[1][1],0)} of net losses, and the top 10% produced ${fmt.pct(C.theo[3][1],0)} of theo. Only ${fmt.pct(C.ahead_share,0)} of players came out ahead for the half-year. A small group losing this much is a reason for responsible-gaming check-ins. It shouldn't become a list of people to push for more play.`;
   // concentration chart
   const lab=p=>p<0.01?'Top 0.1%':'Top '+(p*100)+'%';
   colChart('concChart',C.theo.filter(x=>x[0]<1).map((t,i)=>({label:lab(t[0]),vals:[{v:t[1],color:css('--s1'),name:'Share of theo'},{v:C.loss[i][1],color:css('--s2'),name:'Share of net losses'}]})),{H:210,yf:v=>fmt.pct(v,0),labels:true,lf:v=>fmt.pct(v,0),bw:20});
@@ -943,7 +994,7 @@ function renderQ5(){
     ['Points per $1 of comp',`${cc.pts_per_usd_before} → ${cc.pts_per_usd_after}`,'before vs after May 1 (−56%)'],
     ['Comp cost per day',`${fmt.usd(cc.before.comp_per_day)} → ${fmt.usd(cc.after.comp_per_day)}`,fmt.sgnPct(cc.after.comp_per_day/cc.before.comp_per_day-1,1)+' after the change'],
   ].map(t=>`<div class="card tile"><div class="lbl">${t[0]}</div><div class="val">${t[1]}</div><div class="note">${t[2]}</div></div>`).join('');
-  $('#q5answer').innerHTML=`<b>Answer:</b> Comps are cheap. They cost ${fmt.usdk(comp)} in cost of goods in ${periodLabel()}, about ${fmt.pct(pcc/ptheo,1)} of tracked theo. Menu value is ${fmt.usdk(fv)}, but that is not cash. <b>Something changed on May 1, 2025:</b> the points charged per comp dollar fell from ~${cc.pts_per_usd_before} to ~${cc.pts_per_usd_after} overnight, so a comp now costs players less than half the points. Points earned per dollar of theo did not change. Afterwards, comp cost per day rose ${fmt.sgnPct(cc.after.comp_per_day/cc.before.comp_per_day-1,0)} and reinvestment rose from ${fmt.pct(cc.before.reinv,2)} to ${fmt.pct(cc.after.reinv,2)} of theo, but coin-in per day went <i>down</i> ${fmt.pct(1-cc.after.ci_per_day/cc.before.ci_per_day,1)} and the carded share barely moved. So far there is no sign the richer rate bought more play, though the season confounds this comparison.`;
+  $('#q5answer').innerHTML=`<b>Answer:</b> Comps don't cost much. In ${periodLabel()} they cost ${fmt.usdk(comp)} at cost of goods, about ${fmt.pct(pcc/ptheo,1)} of tracked theo. Their menu value is ${fmt.usdk(fv)}, but we never pay that in cash. <b>One thing changed on May 1, 2025.</b> Overnight, the points needed per comp dollar fell from about ${cc.pts_per_usd_before} to about ${cc.pts_per_usd_after}, so players now spend less than half the points for the same comp. The rate at which they earn points stayed the same. Since then, comp cost per day is up ${fmt.pct(cc.after.comp_per_day/cc.before.comp_per_day-1,0)} and reinvestment went from ${fmt.pct(cc.before.reinv,2)} to ${fmt.pct(cc.after.reinv,2)} of theo. Coin-in per day actually went <i>down</i> ${fmt.pct(1-cc.after.ci_per_day/cc.before.ci_per_day,1)}, and the share of carded play barely moved. So far the cheaper comps haven't bought more play, though the seasonal slowdown muddies a simple before-and-after.`;
   $('#compTbl').innerHTML=`<thead><tr><th class="l">Measure</th><th>Before (Jan–Apr)</th><th>After (May–Jun)</th><th>Change</th></tr></thead><tbody>`+[
     ['Points per $1 of comp face value',cc.pts_per_usd_before,cc.pts_per_usd_after,v=>v.toFixed(2)],
     ['Comp cost per day',cc.before.comp_per_day,cc.after.comp_per_day,fmt.usd],
@@ -961,7 +1012,7 @@ function renderModel(){
   hbarChart('maeChart',names.map(([k,n],i)=>({label:n,v:M.mae[k],color:cols[i],tip:tipRows(n,[['Holdout MAE',fmt.usd(M.mae[k])],['Holdout MAPE',fmt.pct(M.mape[k],1)],['Training MAE',fmt.usd(M.mae_train[k])]])})),{ml:180,vf:fmt.usdk,xf:fmt.usdk,min:0});
   $('#maeTbl').innerHTML=`<thead><tr><th class="l">Forecast</th><th>Train MAE (Jan–Apr)</th><th>Holdout MAE (May–Jun)</th><th>Holdout MAPE</th><th>vs baseline</th></tr></thead><tbody>`+names.map(([k,n])=>`<tr style="cursor:default"><td class="l">${n}</td><td>${fmt.usd(M.mae_train[k])}</td><td><b>${fmt.usd(M.mae[k])}</b></td><td>${fmt.pct(M.mape[k],1)}</td><td>${k==='p_const'?'–':fmt.sgnPct(M.mae[k]/M.mae.p_const-1,0)}</td></tr>`).join('')+'</tbody>';
   lineChart('fcChart',[{name:'Actual',color:css('--ink-2'),pts:te.map(r=>[r[0],r[2]])},{name:'Weekday model',color:css('--s1'),pts:te.map(r=>[r[0],r[4]])},{name:'Constant baseline',color:css('--s2'),pts:te.map(r=>[r[0],r[3]])}],{H:230});
-  $('#modelAnswer').innerHTML=`<b>Result:</b> The weekday model cuts holdout error by ${fmt.pct(1-M.mae.p_wd/M.mae.p_const,0)} against the constant baseline (MAE ${fmt.usdk(M.mae.p_wd)} vs ${fmt.usdk(M.mae.p_const)} per day, ${fmt.pct(M.mape.p_wd,1)} error). Adding the event uplift learned in training (×${M.ev_uplift.toFixed(3)}, applied only to events announced before May 1) trims error a further ${fmt.pct(1-M.mae.p_wdev/M.mae.p_wd,0)} to ${fmt.usdk(M.mae.p_wdev)}, so we use it for planning. A linear trend fits the training data well but <b>does worse</b> on the holdout (${fmt.usdk(M.mae.p_wdtr)}). It overfits a spring rise that did not continue, so we rejected it. Train and holdout were split by time, and nothing from May–June was used to fit any forecast.`;
+  $('#modelAnswer').innerHTML=`<b>Result:</b> Forecasting by day of the week cuts the error by ${fmt.pct(1-M.mae.p_wd/M.mae.p_const,0)} compared with a flat average: it's off by ${fmt.usdk(M.mae.p_wd)} a day on average, against ${fmt.usdk(M.mae.p_const)} (${fmt.pct(M.mape.p_wd,1)} error). Adding a bump for events we already knew about on May 1 (×${M.ev_uplift.toFixed(3)}, learned from the training months) shaves off another ${fmt.pct(1-M.mae.p_wdev/M.mae.p_wd,0)}, down to ${fmt.usdk(M.mae.p_wdev)}, so that's the version we plan with. A trend line looked good on January to April but did <b>worse</b> on May and June (${fmt.usdk(M.mae.p_wdtr)}). It had latched onto a spring rise that didn't last, so we dropped it. Every forecast was fitted on January to April only and tested on May and June.`;
   const fw=M.fault_by_wd; const wds=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const tw=wds.reduce((s,w)=>s+(fw[w]?fw[w].wait:0),0); const td=wds.reduce((s,w)=>s+M.wd_mean[w],0);
   $('#modelDecision').innerHTML=`<p class="small">The forecast shows that Friday and Saturday carry ${fmt.pct((M.wd_mean.Fri+M.wd_mean.Sat)/td,0)} of a typical week's coin-in, and Saturday runs about ${(M.wd_mean.Sat/M.wd_mean.Tue).toFixed(1)}× Tuesday. Fault wait-hours are concentrated the same way: Fri–Sun hold ${fmt.pct(['Fri','Sat','Sun'].reduce((s,w)=>s+fw[w].wait,0)/tw,0)} of all technician wait time. <b>Decision it changes:</b> if a technician were added, they should go to the weekend and grave shifts, not spread evenly. A promotion weekend should not be placed on a Saturday, which the forecast already expects to be full. The model also gives the measurement baseline for §6: each funded action is judged against the weekday forecast for July, not against raw June numbers.</p>
@@ -1047,8 +1098,8 @@ function drawPlan(){
   $('#measure').innerHTML= funded.length? `<table><thead><tr><th class="l">Action</th><th class="l">How we will know it worked</th></tr></thead><tbody>${funded.map(id=>`<tr style="cursor:default"><td class="l"><b>${esc(A[id].name)}</b><div>${evLinks(id)}</div></td><td class="l" style="white-space:normal">${MEASURE[id]}</td></tr>`).join('')}</tbody></table>` : '<p class="small">Nothing funded. Keeping the budget is a valid answer when the evidence points to luck.</p>';
   const ours=Object.keys(OURS).reduce((s,id)=>s+cost(id,OURS[id]),0);
   { const mgrC=cost('A-REPLACE-LEASE',10), mgrB=benefit('A-REPLACE-LEASE',10).v, ourB=Object.keys(OURS).reduce((s,id)=>s+benefit(id,OURS[id]).v,0);
-    $('#heroCmp').innerHTML=`<div class="grid g3" style="margin-top:14px"><div class="tile"><div class="lbl">Manager's plan</div><div class="val">${fmt.usd(mgrC)}</div><div class="note">lease 10 replacements · est. ${fmt.usdk(mgrB)} theo in July</div></div><div class="tile" style="background:var(--hl-green)"><div class="lbl">Our plan</div><div class="val">${fmt.usd(ours)}</div><div class="note">3 targeted actions · est. ${fmt.usdk(ourB)} theo + a pilot answer</div></div></div><div style="margin-top:12px"><a class="evlink" href="#q6">See the $100k plan →</a></div>`; }
-  $('#q6answer').innerHTML=`<b>Recommendation:</b> Don't replace the bottom 10. Most of them are in a weak spot, short-tenured or unlucky, and leasing replacements would cost $33,800 for an estimated ${fmt.usdk(benefit('A-REPLACE-LEASE',10).v)} of 30-day theo. Instead, fund three targeted actions for <b>${fmt.usd(ours)}</b>: (1) <b>inspect M-1158</b>, the one likely leak; (2) <b>signage for Back Forty</b>, the location problem the walkway closure exposed; (3) a <b>comp pilot with a control group</b> to learn whether the May 1 redemption change is worth its cost. <b>Keep ${fmt.usd(100000-ours)}</b>. Downtime is too small to justify an $11,520 technician: the grave-shift saving is worth about ${fmt.usd(benefit('A-TECH-SHIFT',1).v)} a month. Keeping the budget is a valid answer when the evidence points to luck.<div style="margin-top:10px"><b style="background:none;color:inherit;padding:0;font-size:inherit;letter-spacing:0;text-transform:none">Trace it:</b> ${[['A-INSPECT','Inspect'],['A-WAYFINDING','Signage'],['A-COMP-PILOT','Pilot']].map(([id,l])=>`<span style="margin-right:10px"><span class="small" style="font-weight:700">${l}:</span> ${evLinks(id)}</span>`).join('')}</div>`;
+    $('#heroCmp').innerHTML=`<div class="grid g3" style="margin-top:14px"><div class="tile"><div class="lbl">Manager's plan</div><div class="val">${fmt.usd(mgrC)}</div><div class="note">lease 10 replacements · est. ${fmt.usdk(mgrB)} theo in July</div></div><div class="tile" style="background:var(--hl-yellow)"><div class="lbl">Our plan</div><div class="val">${fmt.usd(ours)}</div><div class="note">3 targeted actions · est. ${fmt.usdk(ourB)} theo + a pilot answer</div></div></div><div style="margin-top:12px"><a class="evlink" href="#q6">See the $100k plan →</a></div>`; }
+  $('#q6answer').innerHTML=`<b>Recommendation:</b> Don't replace the bottom 10. Most of them are in a quiet spot, new to the floor, or just unlucky. Leasing 10 replacements would cost $33,800 and bring in about ${fmt.usdk(benefit('A-REPLACE-LEASE',10).v)} of theo over 30 days. We'd spend <b>${fmt.usd(ours)}</b> on three things instead: (1) <b>inspect M-1158</b>, the one machine that looks like it's leaking money; (2) <b>put up signs for Back Forty</b>, since the walkway closure showed how much that zone depends on foot traffic; (3) run a <b>comp pilot with a control group</b> to find out whether the May 1 comp change is worth what it costs. We'd <b>keep ${fmt.usd(100000-ours)}</b>. An extra $11,520 technician doesn't pay off, because faster grave-shift repairs are worth only about ${fmt.usd(benefit('A-TECH-SHIFT',1).v)} a month. Holding on to the money is a perfectly good answer when the gap comes down to luck.<div style="margin-top:10px"><b style="background:none;color:inherit;padding:0;font-size:inherit;letter-spacing:0;text-transform:none">Trace it:</b> ${[['A-INSPECT','Inspect'],['A-WAYFINDING','Signage'],['A-COMP-PILOT','Pilot']].map(([id,l])=>`<span style="margin-right:10px"><span class="small" style="font-weight:700">${l}:</span> ${evLinks(id)}</span>`).join('')}</div>`;
 }
 
 // ---------- appendix
@@ -1089,6 +1140,19 @@ function flashClaim(){ document.querySelectorAll('#claims tr.flash').forEach(t=>
 addEventListener('hashchange',flashClaim);
 function renderAll(){ renderQ1(); renderQ2(); renderQ3(); renderQ4(); renderQ5(); renderModel(); renderQ6(); renderClaims(); }
 initControls(); renderAll(); flashClaim();
+</script>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.side a'));
+  var ids=links.map(function(a){return a.getAttribute('href').slice(1);});
+  function update(){
+    var y=window.scrollY+140, cur=ids[0];
+    ids.forEach(function(id){ var el=document.getElementById(id); if(el && el.getBoundingClientRect().top+window.scrollY<=y) cur=id; });
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4) cur=ids[ids.length-1];
+    links.forEach(function(a){ var on=a.getAttribute('href')==='#'+cur; a.classList.toggle('on',on); if(on) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current'); });
+  }
+  window.addEventListener('scroll',update,{passive:true}); window.addEventListener('resize',update); update();
+})();
 </script>
 </body>
 </html>
