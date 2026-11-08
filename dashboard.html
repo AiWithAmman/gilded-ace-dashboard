@@ -3,169 +3,180 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%230f2a4f%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2716%27 text-anchor=%27middle%27 fill=%27%23d8ae5a%27 font-family=%27sans-serif%27 font-weight=%27700%27%3EA%3C/text%3E%3C/svg%3E">
 <title>Luck, Location, or Leak</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700&display=swap" rel="stylesheet">
 <style>
-/* ============ Neo-brutalist theme ============ */
+/* ============ Professional theme ============ */
 :root{
   color-scheme:light;
-  --page:#fbf3df; --surface:#ffffff; --surface-2:#f4ead2; --ink:#121212; --ink-2:#2b2b2b; --muted:#5e5849;
-  --grid:#e2d8bf; --axis:#121212; --ring:#121212; --shadow:#121212;
-  --s1:#3456ff; --s2:#ff6b2c; --s3:#00a37a; --s4:#f5b700; --s5:#ff4f8b; --s6:#0fb5d4; --s7:#7a3ff0; --s8:#e5383b;
-  --good:#00a37a; --warn:#f5b700; --serious:#ff6b2c; --crit:#e5383b; --good-text:#006e4f;
-  --neutral:#c9bfa6; --accent-wash:#fff0a8;
-  --hl-yellow:#ffe14d; --hl-pink:#ffb8cf; --hl-blue:#b9c6ff; --hl-green:#aef0d2; --hl-orange:#ffc8a6; --hl-purple:#d8c7ff; --hl-gray:#e6dfcc;
-  --bw:3px; --sh:5px 5px 0 var(--shadow); --sh-sm:3px 3px 0 var(--shadow);
+  --page:#f5f6f8; --surface:#ffffff; --surface-2:#f1f3f6; --ink:#0f172a; --ink-2:#334155; --muted:#64748b;
+  --line:#e2e6ec; --line-2:#cdd3dc; --grid:#e9ecf1; --axis:#94a3b8; --ring:#2451b5; --shadow:rgba(15,23,42,.06);
+  --brand:#0f2a4f; --brand-ink:#ffffff; --gold:#b8892d; --accent:#2451b5;
+  --s1:#2f6fd6; --s2:#e07a2f; --s3:#1f9d74; --s4:#d4a017; --s5:#c2457a; --s6:#1b9bb5; --s7:#6f52c9; --s8:#d1453b;
+  --good:#1f9d74; --warn:#d4a017; --serious:#e07a2f; --crit:#c2362c; --good-text:#16794f;
+  --neutral:#c4ccd7; --accent-wash:#eaf1fd;
+  --hl-yellow:#fbf4e1; --hl-pink:#fbecf2; --hl-blue:#eaf1fd; --hl-green:#e6f5ef; --hl-orange:#fdf0e6; --hl-purple:#f0ecfb; --hl-gray:#eef1f5;
+  --a-yellow:#b8892d; --a-blue:#2f6fd6; --a-green:#1f9d74; --a-pink:#c2457a; --a-orange:#e07a2f; --a-purple:#6f52c9; --a-gray:#64748b;
+  --r:10px; --sh:0 1px 2px rgba(15,23,42,.05),0 1px 3px rgba(15,23,42,.04); --sh-sm:0 1px 2px rgba(15,23,42,.06);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --page:#17160f; --surface:#22201a; --surface-2:#2d2a21; --ink:#f8f1dc; --ink-2:#e6dec6; --muted:#aca38a;
-    --grid:#3a3629; --axis:#f8f1dc; --ring:#f8f1dc; --shadow:#f8f1dc;
-    --s1:#6e86ff; --s2:#ff8a52; --s3:#22c493; --s4:#ffcc29; --s5:#ff77a6; --s6:#45d3ec; --s7:#a07bff; --s8:#ff5c5f;
-    --good-text:#3fd9a6; --crit:#ff5c5f; --neutral:#5b5546; --accent-wash:#4a3f00;
-    --hl-yellow:#5a4800; --hl-pink:#5c1f33; --hl-blue:#25306b; --hl-green:#0d4a37; --hl-orange:#5e2a0c; --hl-purple:#3a2470; --hl-gray:#343025;
+    --page:#0d1320; --surface:#151c2b; --surface-2:#1b2435; --ink:#e7ebf2; --ink-2:#c3cbd8; --muted:#8a97ab;
+    --line:#263146; --line-2:#334059; --grid:#222c3e; --axis:#5c6a80; --ring:#7aa5f5; --shadow:rgba(0,0,0,.3);
+    --brand:#0a1424; --brand-ink:#e7ebf2; --verdict:#173057; --gold:#d8ae5a; --accent:#7aa5f5;
+    --s1:#6b9bf0; --s2:#f0955a; --s3:#3cc497; --s4:#e6bb3d; --s5:#e07aa6; --s6:#3fc0d8; --s7:#9b84e8; --s8:#ee6f63;
+    --good-text:#4cd3a2; --crit:#ee6f63; --neutral:#45526a; --accent-wash:#1c2a47;
+    --hl-yellow:#2a2516; --hl-pink:#2c1b26; --hl-blue:#18243d; --hl-green:#14282a; --hl-orange:#2c2018; --hl-purple:#221d38; --hl-gray:#1b2333;
+    --a-yellow:#d8ae5a; --a-blue:#6b9bf0; --a-green:#3cc497; --a-pink:#e07aa6; --a-orange:#f0955a; --a-purple:#9b84e8; --a-gray:#8a97ab;
+    --sh:0 1px 2px rgba(0,0,0,.3); --sh-sm:0 1px 2px rgba(0,0,0,.3);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --page:#17160f; --surface:#22201a; --surface-2:#2d2a21; --ink:#f8f1dc; --ink-2:#e6dec6; --muted:#aca38a;
-  --grid:#3a3629; --axis:#f8f1dc; --ring:#f8f1dc; --shadow:#f8f1dc;
-  --s1:#6e86ff; --s2:#ff8a52; --s3:#22c493; --s4:#ffcc29; --s5:#ff77a6; --s6:#45d3ec; --s7:#a07bff; --s8:#ff5c5f;
-  --good-text:#3fd9a6; --crit:#ff5c5f; --neutral:#5b5546; --accent-wash:#4a3f00;
-  --hl-yellow:#5a4800; --hl-pink:#5c1f33; --hl-blue:#25306b; --hl-green:#0d4a37; --hl-orange:#5e2a0c; --hl-purple:#3a2470; --hl-gray:#343025;
+  --page:#0d1320; --surface:#151c2b; --surface-2:#1b2435; --ink:#e7ebf2; --ink-2:#c3cbd8; --muted:#8a97ab;
+  --line:#263146; --line-2:#334059; --grid:#222c3e; --axis:#5c6a80; --ring:#7aa5f5; --shadow:rgba(0,0,0,.3);
+  --brand:#0a1424; --brand-ink:#e7ebf2; --verdict:#173057; --gold:#d8ae5a; --accent:#7aa5f5;
+  --s1:#6b9bf0; --s2:#f0955a; --s3:#3cc497; --s4:#e6bb3d; --s5:#e07aa6; --s6:#3fc0d8; --s7:#9b84e8; --s8:#ee6f63;
+  --good-text:#4cd3a2; --crit:#ee6f63; --neutral:#45526a; --accent-wash:#1c2a47;
+  --hl-yellow:#2a2516; --hl-pink:#2c1b26; --hl-blue:#18243d; --hl-green:#14282a; --hl-orange:#2c2018; --hl-purple:#221d38; --hl-gray:#1b2333;
+  --a-yellow:#d8ae5a; --a-blue:#6b9bf0; --a-green:#3cc497; --a-pink:#e07aa6; --a-orange:#f0955a; --a-purple:#9b84e8; --a-gray:#8a97ab;
+  --sh:0 1px 2px rgba(0,0,0,.3); --sh-sm:0 1px 2px rgba(0,0,0,.3);
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--page);color:var(--ink);font:15px/1.55 "Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif}
-body{background-image:radial-gradient(var(--grid) 1px,transparent 1.2px);background-size:22px 22px}
-a{color:var(--ink);text-decoration-thickness:2px;text-underline-offset:3px}
-a:hover{background:var(--hl-yellow)}
+html,body{margin:0;background:var(--page);color:var(--ink);font:14.5px/1.6 "Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
 .wrap{max-width:1200px;margin:0 auto;padding:0 16px 72px}
-::selection{background:var(--hl-yellow);color:var(--ink)}
-:focus-visible{outline:3px solid var(--s1);outline-offset:2px}
+::selection{background:var(--accent-wash);color:var(--ink)}
+:focus-visible{outline:2px solid var(--ring);outline-offset:2px;border-radius:4px}
 
 /* ---- header */
-header.top{position:sticky;top:0;z-index:20;background:var(--page);border-bottom:var(--bw) solid var(--ink)}
-header.top .wrap{padding-top:10px;padding-bottom:10px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center}
+header.top{position:sticky;top:0;z-index:20;background:var(--brand);color:var(--brand-ink);border-bottom:1px solid rgba(255,255,255,.08);box-shadow:0 1px 0 var(--gold)}
+header.top .wrap{padding-top:10px;padding-bottom:10px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
 @media (max-width:720px){header.top{position:static}}
-.brand{font-weight:700;font-size:15px;margin-right:auto;display:flex;align-items:center;gap:10px;line-height:1.15}
-.brand .logo{display:inline-grid;place-items:center;width:40px;height:40px;background:var(--hl-yellow);border:var(--bw) solid var(--ink);box-shadow:var(--sh-sm);font-size:20px;font-weight:800;color:var(--ink)}
-.brand small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-.ctl{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--ink)}
-select,input[type=number]{font:inherit;font-size:13px;font-weight:600;text-transform:none;letter-spacing:0;color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:0;padding:5px 8px;box-shadow:var(--sh-sm)}
-select:hover,input[type=number]:hover{background:var(--hl-yellow)}
-input[type=range]{accent-color:var(--ink);width:100%}
-button{font:inherit;font-size:13px;font-weight:700;color:var(--ink);background:var(--surface);border:2px solid var(--ink);border-radius:0;padding:6px 12px;cursor:pointer;box-shadow:var(--sh-sm);transition:transform .06s,box-shadow .06s}
-button:hover{background:var(--hl-yellow);transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--shadow)}
-button:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--shadow)}
-button.on{background:var(--ink);color:var(--page)}
+.brand{font-weight:600;font-size:14.5px;margin-right:auto;display:flex;align-items:center;gap:12px;line-height:1.2;color:var(--brand-ink)}
+.brand .logo{display:inline-grid;place-items:center;width:34px;height:34px;border:1.5px solid var(--gold);border-radius:8px;font-size:14px;font-weight:700;color:var(--gold);letter-spacing:-.02em}
+.brand small{display:block;font-weight:400;color:rgba(231,235,242,.7);font-size:12px}
+.ctl{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:inherit}
+header.top .ctl{color:rgba(231,235,242,.8)}
+select,input[type=number]{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:7px;padding:5px 8px}
+select:hover,input[type=number]:hover{border-color:var(--axis)}
+header.top select{background:rgba(255,255,255,.08);color:var(--brand-ink);border-color:rgba(255,255,255,.18)}
+header.top select option{color:#0f172a;background:#fff}
+input[type=range]{accent-color:var(--accent);width:100%}
+button{font:inherit;font-size:13px;font-weight:500;color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:7px;padding:6px 12px;cursor:pointer;transition:background .12s,border-color .12s}
+button:hover{background:var(--surface-2);border-color:var(--axis)}
+button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+header.top button{background:transparent;color:var(--brand-ink);border-color:rgba(255,255,255,.22)}
+header.top button:hover{background:rgba(255,255,255,.08)}
 
 /* ---- hero */
-.kicker{display:inline-block;margin-top:30px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:var(--page);padding:4px 10px}
-h1{font-size:clamp(38px,6.4vw,76px);line-height:.95;margin:14px 0 14px;font-weight:700;letter-spacing:-.035em}
-h1 .w{display:inline-block;padding:0 .12em;border:var(--bw) solid var(--ink);box-shadow:var(--sh);margin:4px 2px;background:var(--surface)}
-h1 .w1{background:var(--hl-green);transform:rotate(-1.5deg)} h1 .w2{background:var(--hl-blue);transform:rotate(1deg)} h1 .w3{background:var(--hl-pink);transform:rotate(-1deg)}
-h2{font-size:clamp(24px,3.4vw,34px);line-height:1.1;margin:6px 0 8px;font-weight:700;letter-spacing:-.02em}
-h3{font-size:16px;margin:0 0 4px;font-weight:700;letter-spacing:-.01em}
-.lede{color:var(--ink-2);max-width:840px;margin:0 0 8px;font-size:16px}
-nav.toc{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 8px}
-nav.toc a{font-size:13px;font-weight:700;text-decoration:none;color:var(--ink);border:2px solid var(--ink);padding:6px 12px;background:var(--surface);box-shadow:var(--sh-sm);transition:transform .06s,box-shadow .06s}
-nav.toc a:hover{background:var(--hl-yellow);transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--shadow)}
-nav.toc a b{display:inline-grid;place-items:center;min-width:20px;height:20px;margin-right:6px;background:var(--ink);color:var(--page);font-size:11px}
+.kicker{display:inline-block;margin-top:36px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+h1{font-size:clamp(32px,4.8vw,52px);line-height:1.08;margin:8px 0 12px;font-weight:700;letter-spacing:-.025em;color:var(--ink)}
+h1 .w{font-weight:700} h1 .w3{color:var(--accent)}
+h2{font-size:clamp(21px,2.6vw,27px);line-height:1.2;margin:4px 0 8px;font-weight:650;letter-spacing:-.015em}
+h3{font-size:15px;margin:0 0 4px;font-weight:600;letter-spacing:-.005em}
+.lede{color:var(--ink-2);max-width:860px;margin:0 0 8px;font-size:15px}
+nav.toc{display:flex;flex-wrap:wrap;gap:4px;margin:22px 0 8px;padding:4px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);width:fit-content;max-width:100%}
+nav.toc a{font-size:13px;font-weight:500;color:var(--ink-2);padding:6px 12px;border-radius:7px}
+nav.toc a:hover{background:var(--surface-2);color:var(--ink);text-decoration:none}
+nav.toc a b{display:inline-grid;place-items:center;min-width:20px;height:20px;margin-right:6px;border-radius:5px;background:var(--surface-2);color:var(--muted);font-size:11px;font-weight:600}
 
 /* ---- sections */
-section.q{margin-top:64px;scroll-margin-top:84px;--qc:var(--hl-yellow)}
-section.q[data-c="blue"]{--qc:var(--hl-blue)} section.q[data-c="green"]{--qc:var(--hl-green)} section.q[data-c="pink"]{--qc:var(--hl-pink)}
-section.q[data-c="orange"]{--qc:var(--hl-orange)} section.q[data-c="purple"]{--qc:var(--hl-purple)} section.q[data-c="gray"]{--qc:var(--hl-gray)}
-.qtag{display:inline-block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;background:var(--qc);color:var(--ink);border:2px solid var(--ink);padding:3px 10px;box-shadow:var(--sh-sm)}
-section.q>h2{border-bottom:var(--bw) solid var(--ink);padding-bottom:8px}
-.answer{position:relative;border:var(--bw) solid var(--ink);padding:14px 18px 14px 18px;margin:14px 0 20px;background:var(--qc);box-shadow:var(--sh);max-width:960px;font-size:15.5px}
-.answer>b:first-child{display:inline-block;background:var(--ink);color:var(--page);padding:0 6px;margin-right:4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;vertical-align:1px}
+section.q{margin-top:64px;padding-top:28px;border-top:1px solid var(--line);scroll-margin-top:84px;--qc:var(--hl-yellow);--qa:var(--a-yellow)}
+section.q[data-c="blue"]{--qc:var(--hl-blue);--qa:var(--a-blue)} section.q[data-c="green"]{--qc:var(--hl-green);--qa:var(--a-green)} section.q[data-c="pink"]{--qc:var(--hl-pink);--qa:var(--a-pink)}
+section.q[data-c="orange"]{--qc:var(--hl-orange);--qa:var(--a-orange)} section.q[data-c="purple"]{--qc:var(--hl-purple);--qa:var(--a-purple)} section.q[data-c="gray"]{--qc:var(--hl-gray);--qa:var(--a-gray)}
+.qtag{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--qa,var(--muted))}
+.qtag::before{content:"";width:18px;height:2px;background:var(--qa,var(--muted));border-radius:2px}
+.answer{position:relative;border:1px solid var(--line);border-left:3px solid var(--qa);border-radius:0 var(--r) var(--r) 0;padding:14px 18px;margin:14px 0 20px;background:var(--surface);box-shadow:var(--sh);max-width:980px;font-size:15px;color:var(--ink-2)}
+.answer b{color:var(--ink)}
+.answer>b:first-child{display:inline-block;color:var(--qa);margin-right:4px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
 
-.grid{display:grid;gap:18px}
+.grid{display:grid;gap:16px}
 .g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
 .g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr))}
 .g4{grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr))}
-.card{background:var(--surface);border:var(--bw) solid var(--ink);border-radius:0;padding:16px 18px;min-width:0;box-shadow:var(--sh)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;min-width:0;box-shadow:var(--sh)}
 .card>h3:first-child{margin-bottom:2px}
-.card .sub{color:var(--muted);font-size:13px;margin:2px 0 10px}
-.tile{position:relative;border-top-width:12px;border-top-color:var(--ink)}
-section.q .card.tile{border-top-color:var(--ink);background:linear-gradient(var(--qc),var(--qc)) top/100% 8px no-repeat,var(--surface);padding-top:20px}
-.tile .lbl{font-size:12px;color:var(--ink-2);font-weight:700;text-transform:uppercase;letter-spacing:.06em}
-.tile .val{font-size:30px;font-weight:700;line-height:1.1;margin-top:4px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.card .sub{color:var(--muted);font-size:13px;margin:2px 0 12px}
+.tile{position:relative}
+section.q .card.tile{border-top:3px solid var(--qa);padding-top:14px}
+.tile .lbl{font-size:12px;color:var(--muted);font-weight:500}
+.tile .val{font-size:26px;font-weight:650;line-height:1.15;margin-top:4px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink)}
 .tile .note{font-size:12.5px;color:var(--muted);margin-top:4px}
-.card.tile{border-top-width:var(--bw)}
-.hero .tile,#budgetSum .tile{border:2px solid var(--ink);padding:8px 12px;background:var(--surface)}
-.hero .tile .val{font-size:26px}
-.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;margin-top:22px}
+.hero .tile,#budgetSum .tile{border:1px solid var(--line);border-radius:8px;padding:10px 14px;background:var(--surface-2)}
+.hero .tile .val{font-size:22px}
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:16px;margin-top:20px}
 @media (max-width:860px){.hero{grid-template-columns:1fr}}
-.hero .verdict{background:var(--hl-yellow)}
-.hero .verdict .qtag{background:var(--surface)}
-.hero .big{font-size:clamp(64px,10vw,112px);font-weight:700;line-height:.9;margin:14px 0 10px;letter-spacing:-.05em}
-.hero .verdict .ink2{color:var(--ink)}
-.hero .verdict .muted{color:var(--ink-2)}
+.hero .verdict{background:var(--verdict,var(--brand));color:#e7ebf2;border-color:var(--verdict,var(--brand));--qa:var(--gold)}
+.hero .verdict .qtag{color:var(--gold)} .hero .verdict .qtag::before{background:var(--gold)}
+.hero .big{font-size:clamp(52px,8vw,88px);font-weight:700;line-height:.95;margin:12px 0 10px;letter-spacing:-.04em;color:#fff}
+.hero .verdict .ink2,.hero .verdict #heroText{color:rgba(231,235,242,.86)}
+.hero .verdict b{color:#fff}
+.hero .verdict .muted{color:rgba(231,235,242,.65)}
+.hero .verdict a{color:var(--gold)}
 .chart{width:100%;position:relative;margin-top:4px}
-.chart svg{display:block;width:100%;height:auto;overflow:visible;font-family:"Space Grotesk",system-ui,sans-serif}
-.chart svg path:not([fill="none"]){stroke:var(--ink);stroke-width:1.5px;stroke-linejoin:miter}
-.chart svg circle{stroke:var(--ink)!important;stroke-width:2px!important}
-.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;font-weight:500;color:var(--ink-2);margin:6px 0 8px}
-.legend i{display:inline-block;width:12px;height:12px;border:2px solid var(--ink);margin-right:6px;vertical-align:-2px}
-.legend i.ln{height:4px;width:18px;border:0;vertical-align:3px}
-.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:2px solid var(--ink)}
+.chart svg{display:block;width:100%;height:auto;overflow:visible;font-family:"Inter",system-ui,sans-serif}
+.chart svg circle{stroke:var(--surface);stroke-width:1.5px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--ink-2);margin:6px 0 8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend i.ln{height:3px;width:16px;border-radius:2px;vertical-align:3px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:8px}
 .card .tbl-wrap{margin-top:6px}
 #measure,#mcBody,#modelDecision,#budgetSum{overflow-x:auto}
 #mcBody td,#measure td{white-space:normal}
 table{border-collapse:collapse;width:100%;font-size:13px}
-th,td{padding:7px 8px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap;font-variant-numeric:tabular-nums}
-th{font-weight:700;color:var(--page);background:var(--ink);font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;position:sticky;top:0;z-index:1}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap;font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:0}
+th{font-weight:600;color:var(--muted);background:var(--surface-2);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;position:sticky;top:0;z-index:1}
 th.l,td.l{text-align:left}
 tr.sel td{background:var(--accent-wash)}
-tr.sel td:first-child{box-shadow:inset 6px 0 0 var(--ink)}
+tr.sel td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
 tbody tr{cursor:pointer}
 tbody tr:hover td{background:var(--surface-2)}
 .expl{white-space:normal!important;min-width:290px;text-align:left}
-.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:2px 8px;margin:2px 4px 2px 0;border:2px solid var(--ink);color:var(--ink);background:var(--surface);white-space:nowrap}
-.chip b{display:inline-block;width:10px;height:10px;border:1.5px solid var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:3px 10px;margin:3px 4px 3px 0;border:1px solid var(--line);border-radius:999px;color:var(--ink-2);background:var(--surface-2);white-space:nowrap}
+.chip b{display:inline-block;width:8px;height:8px;border-radius:50%}
 .muted{color:var(--muted)} .ink2{color:var(--ink-2)}
 .small{font-size:12.5px}
-.tip{position:fixed;pointer-events:none;z-index:50;background:var(--surface);color:var(--ink);border:2px solid var(--ink);padding:8px 10px;font-size:12.5px;box-shadow:4px 4px 0 var(--shadow);max-width:310px;display:none;line-height:1.4}
-.tip .t{font-weight:700;margin:-8px -10px 6px;padding:5px 10px;background:var(--ink);color:var(--page)}
+.tip{position:fixed;pointer-events:none;z-index:50;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12.5px;box-shadow:0 8px 24px rgba(15,23,42,.14);max-width:310px;display:none;line-height:1.45}
+.tip .t{font-weight:600;margin:0 0 5px;padding:0 0 5px;border-bottom:1px solid var(--line)}
 .tip .row{display:flex;gap:10px;justify-content:space-between}
-.tip .row span:last-child{font-variant-numeric:tabular-nums;font-weight:700}
-.tip i{border:1px solid var(--ink)}
-details{background:var(--surface);border:var(--bw) solid var(--ink);padding:12px 18px;margin-top:16px;box-shadow:var(--sh)}
-details summary{cursor:pointer;font-weight:700;list-style:none}
+.tip .row span:last-child{font-variant-numeric:tabular-nums;font-weight:600}
+.tip i{border-radius:2px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 18px;margin-top:14px;box-shadow:var(--sh)}
+details summary{cursor:pointer;font-weight:600;list-style:none;display:flex;align-items:center}
 details summary::-webkit-details-marker{display:none}
-details summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;margin-right:10px;border:2px solid var(--ink);background:var(--qc,var(--hl-yellow));font-weight:800}
-details[open] summary::before{content:"−"}
-.evid{font-size:12.5px;color:var(--muted);margin-top:10px;padding-top:8px;border-top:2px dashed var(--grid)}
-.evid code,code{font-family:"Space Mono",ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11.5px;background:var(--surface-2);padding:1px 5px;border:1px solid var(--grid)}
-.ok{color:var(--good-text)} .bad{color:var(--crit);font-weight:700}
-.status{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+details summary::before{content:"";width:7px;height:7px;margin:0 12px 0 2px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(-45deg);transition:transform .15s}
+details[open] summary::before{transform:rotate(45deg)}
+.evid{font-size:12.5px;color:var(--muted);margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+.evid code,code{font-family:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,monospace;font-size:11.5px;background:var(--surface-2);padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+.ok{color:var(--good-text)} .bad{color:var(--crit);font-weight:600}
+.status{display:inline-flex;align-items:center;gap:6px;font-weight:600}
 .plan td input{width:64px}
-.budgetbar{height:26px;border:var(--bw) solid var(--ink);background:repeating-linear-gradient(45deg,var(--surface),var(--surface) 8px,var(--surface-2) 8px,var(--surface-2) 16px);overflow:hidden;margin:12px 0 8px;position:relative}
-.budgetbar span{display:block;height:100%;background:var(--s1);border-right:var(--bw) solid var(--ink)}
-.drill{background:var(--surface);border:var(--bw) solid var(--ink);padding:14px 18px;margin-top:18px;box-shadow:var(--sh)}
-.drill.sel-row{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;background:var(--qc)}
+.budgetbar{height:10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line);overflow:hidden;margin:14px 0 10px;position:relative}
+.budgetbar span{display:block;height:100%;background:var(--accent);border-radius:999px}
+.drill{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;margin-top:16px;box-shadow:var(--sh)}
+.drill.sel-row{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;background:var(--surface-2)}
 .kbd{font-size:12px;color:var(--muted)}
-.cols{columns:2 340px;column-gap:28px}
+.cols{columns:2 340px;column-gap:32px}
 .cols p{break-inside:avoid;margin:0 0 10px}
-.flag{font-weight:700}
-.evlink{display:inline-block;font-size:11.5px;font-weight:700;text-decoration:none;border:2px solid var(--ink);padding:1px 7px;margin:2px 4px 2px 0;background:var(--hl-blue);color:var(--ink);white-space:nowrap}
-.evlink:hover{background:var(--hl-yellow)}
+.flag{font-weight:600}
+.evlink{display:inline-block;font-size:11.5px;font-weight:500;border:1px solid var(--line-2);border-radius:999px;padding:1px 8px;margin:2px 4px 2px 0;background:var(--surface);color:var(--accent);white-space:nowrap}
+.evlink:hover{background:var(--accent-wash);text-decoration:none}
 #claims tr:target td,#claims tr.flash td{background:var(--hl-yellow)}
 #claims tr{scroll-margin-top:110px}
 .chart{scroll-margin-top:200px}
 .rng{font-size:11.5px;color:var(--muted);display:block}
-.strip{display:flex;flex-wrap:wrap;gap:0;margin:18px 0 0;border:var(--bw) solid var(--ink);box-shadow:var(--sh);background:var(--surface)}
-.strip>div{flex:1 1 220px;padding:12px 16px;border-right:var(--bw) solid var(--ink)}
-.strip>div:last-child{border-right:0}
-.strip>div:nth-child(1){background:var(--hl-green)} .strip>div:nth-child(2){background:var(--hl-blue)} .strip>div:nth-child(3){background:var(--hl-pink)}
-.strip b{display:block;font-size:20px;letter-spacing:-.01em}
-.strip span{font-size:13px;color:var(--ink)}
-@media (max-width:700px){.strip>div{border-right:0;border-bottom:var(--bw) solid var(--ink)} .strip>div:last-child{border-bottom:0}}
-footer.foot{margin-top:56px;border-top:var(--bw) solid var(--ink);padding-top:14px;font-size:12.5px;color:var(--muted)}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;margin:20px 0 0}
+.strip>div{padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);border-top:3px solid var(--s3)}
+.strip>div:nth-child(2){border-top-color:var(--s1)} .strip>div:nth-child(3){border-top-color:var(--s8)}
+.strip b{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
+.strip span{font-size:13px;color:var(--ink-2)}
+footer.foot{margin-top:56px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -466,7 +477,7 @@ footer.foot{margin-top:56px;border-top:var(--bw) solid var(--ink);padding-top:14
     </div>
   </details>
   <details><summary>AI-use disclosure</summary>
-    <p class="small">The analysis pipeline (<code>analysis/build_data.py</code>) and this dashboard were written with Claude (Anthropic) via Claude Code. It wrote the pandas code, the HTML/SVG charts and the neo-brutalist styling, and drafted the text. Every number on the page is computed from the provided data by that script, and the team should review the claims before submitting.</p>
+    <p class="small">The analysis pipeline (<code>analysis/build_data.py</code>) and this dashboard were written with Claude (Anthropic) via Claude Code. It wrote the pandas code, the HTML/SVG charts and the visual design, and drafted the text. Every number on the page is computed from the provided data by that script, and the team should review the claims before submitting.</p>
   </details>
   <details><summary>Reproduce</summary>
     <p class="small"><code>python -m pip install pandas pyarrow</code> then <code>python analysis/build_data.py</code> from the repository root. The script rewrites <code>analysis/dashboard_data.json</code> and the embedded data block in this file. Open <code>dashboard.html</code> in any browser; it needs no server or internet connection.</p>
@@ -526,7 +537,7 @@ function niceTicks(lo, hi, n=5){ if(lo===hi){hi=lo+1;} const span=hi-lo, step0=s
   const step=[1,2,2.5,5,10].map(s=>s*mag).find(s=>span/s<=n) || 10*mag; const t=[]; for(let v=Math.ceil(lo/step)*step; v<=hi+1e-9; v+=step) t.push(+v.toFixed(10)); return t; }
 const cw = (id, d=640) => Math.max(300, (document.getElementById(id)||{}).clientWidth || d);
 function svgFor(id, W, H){ const c=document.getElementById(id); c.innerHTML=''; const s=el('svg',{viewBox:`0 0 ${W} ${H}`,role:'img'}); c.appendChild(s); return s; }
-function yAxis(svg, y, ticks, x0, x1, f){ ticks.forEach(t=>{ el('line',{x1:x0,x2:x1,y1:y(t),y2:y(t),stroke:css('--grid'),'stroke-width':1,'stroke-dasharray':'4 4'},svg);
+function yAxis(svg, y, ticks, x0, x1, f){ ticks.forEach(t=>{ el('line',{x1:x0,x2:x1,y1:y(t),y2:y(t),stroke:css('--grid'),'stroke-width':1,},svg);
   const tx=el('text',{x:x0-6,y:y(t)+4,'text-anchor':'end','font-size':11,fill:css('--muted')},svg); tx.textContent=f(t); }); }
 function txt(svg, x, y, s, o={}){ const t=el('text',Object.assign({x,y,'font-size':11,fill:css('--muted')},o),svg); t.textContent=s; return t; }
 const dateX = (d) => new Date(d+'T12:00:00Z').getTime();
@@ -733,7 +744,7 @@ function drawDecomp(rows){
   rows.forEach((a,i)=>{ const cy=m.t+i*rh+rh/2, bh=14; let negAcc=0,posAcc=0;
     const segs=DEC.map(d=>({k:d[0],name:d[1],c:css(d[2]),v:a.dec[d[0]]}));
     segs.forEach(s=>{ if(Math.abs(s.v)<1) return; let x0,x1; if(s.v<0){ x1=X(negAcc); negAcc+=s.v; x0=X(negAcc);} else { x0=X(posAcc); posAcc+=s.v; x1=X(posAcc);}
-      el('rect',{x:x0+1,y:cy-bh/2,width:Math.max(0.5,x1-x0-2),height:bh,fill:s.c,stroke:css('--ink'),'stroke-width':1.5},svg); });
+      el('rect',{x:x0+1,y:cy-bh/2,width:Math.max(0.5,x1-x0-2),height:bh,fill:s.c,stroke:css('--surface'),'stroke-width':1},svg); });
     const net=a.hw-a.med; el('circle',{cx:X(net),cy,r:5,fill:css('--ink'),stroke:css('--surface'),'stroke-width':2},svg);
     const lt=txt(svg,m.l-8,cy+4,a.id,{'text-anchor':'end',fill:css('--ink-2'),'font-size':12,'font-weight':S.sel===a.id?700:400});
     const hit=el('rect',{x:0,y:cy-rh/2,width:W,height:rh,fill:'transparent',style:'cursor:pointer'},svg);
@@ -835,7 +846,7 @@ function renderQ2(){
     ['Back Forty during closure', fmt.sgnPct(did.b40_change,0), `theo/hr vs ${fmt.sgnPct(did.rest_change,0)} for the rest of the floor · ≈${fmt.usdk(did.lost_theo)} theo lost`],
   ].map(t=>`<div class="card tile"><div class="lbl">${t[0]}</div><div class="val">${t[1]}</div><div class="note">${t[2]}</div></div>`).join('');
   const city=B.city;
-  $('#q2answer').innerHTML = `<b>Answer:</b> over the six months, floor demand was flat to slightly down. February and March were strongest, and June was weakest, about ${(()=>{const pm=m=>{const x=B.days.filter(d=>d.d.startsWith(m));return x.reduce((s,d)=>s+d.ci,0)/x.length;}; return fmt.sgnPct(pm('2025-06')/pm('2025-02')-1,0);})()} per day against February. This tracks Las Vegas visitation, which fell year on year every month (real LVCVA data: ${city.map(c=>fmt.sgnPct(c.yoy,0)).join(', ')}). Weekends carry the floor: Saturday averages about 1.6× Tuesday. Events add a modest ~${evLift==null?'–':fmt.pct(evLift,0)}. The one sharp, local change was <b>Back Forty</b>: while the Main Entrance ↔ Back Forty walkway was closed for renovation (Mar 3–Apr 6), its expected win per hour fell ${fmt.pct(-did.b40_change,0)} while the rest of the floor rose ${fmt.pct(did.rest_change,0)}. The zone depends on foot traffic from the entrance.`;
+  $('#q2answer').innerHTML = `<b>Answer:</b> Over the six months, floor demand was flat to slightly down. February and March were strongest, and June was weakest, about ${(()=>{const pm=m=>{const x=B.days.filter(d=>d.d.startsWith(m));return x.reduce((s,d)=>s+d.ci,0)/x.length;}; return fmt.sgnPct(pm('2025-06')/pm('2025-02')-1,0);})()} per day against February. This tracks Las Vegas visitation, which fell year on year every month (real LVCVA data: ${city.map(c=>fmt.sgnPct(c.yoy,0)).join(', ')}). Weekends carry the floor: Saturday averages about 1.6× Tuesday. Events add a modest ~${evLift==null?'–':fmt.pct(evLift,0)}. The one sharp, local change was <b>Back Forty</b>: while the Main Entrance ↔ Back Forty walkway was closed for renovation (Mar 3–Apr 6), its expected win per hour fell ${fmt.pct(-did.b40_change,0)} while the rest of the floor rose ${fmt.pct(did.rest_change,0)}. The zone depends on foot traffic from the entrance.`;
   // zone weekly theo/hr
   const zs=Object.keys(ZN).sort();
   const sel=S.zone || (S.bank? (B.machines.find(m=>m.bank===S.bank)||{}).zone : '');
@@ -883,7 +894,7 @@ function renderQ3(){
   const g=F.filter(f=>f.shift==='grave'), full2=F.filter(f=>f.shift!=='grave'&&f.actual>=f.planned&&f.planned>=2), sh=F.filter(f=>f.actual<f.planned);
   const ridge=MM.filter(r=>inPeriod(r.month)&&MACH[r.id].manu==='Ridgeline'), oth=MM.filter(r=>inPeriod(r.month)&&MACH[r.id].manu!=='Ridgeline');
   const rr=ridge.reduce((s,r)=>s+r.f,0)/Math.max(1,ridge.reduce((s,r)=>s+r.days,0)), ro=oth.reduce((s,r)=>s+r.f,0)/Math.max(1,oth.reduce((s,r)=>s+r.days,0));
-  $('#q3answer').innerHTML=`<b>Answer:</b> downtime is a small leak, not the main story. The floor was available ${fmt.pct(1-downH/sched,1)} of scheduled hours, and downtime cost about ${fmt.usdk(lost)} of expected win (${fmt.pct(lost/theo,1)}) in ${periodLabel()}. It is also not why the bottom 10 earned less: ${(()=>{ const b=[...AG.list].sort((a,c)=>a.hw-c.hw).slice(0,10); return `their downtime cost at most ${fmt.usd(Math.max(...b.map(a=>a.lt)))} each, against gaps of ${fmt.usdk(Math.min(...b.map(a=>a.med-a.hw)))}–${fmt.usdk(Math.max(...b.map(a=>a.med-a.hw)))} to the median machine`; })()}. The pattern is <b>when</b>. ${(()=>{ const parts=[[full2,'on a fully staffed two-tech shift'],[g,'on the one-tech grave shift'],[sh,'when a shift is short-staffed']].filter(([x])=>x.length).map(([x,l])=>`${mean(x.map(f=>f.wait)).toFixed(1)} h ${l}`); return parts.length? 'Faults wait for a technician '+(parts.length>1? parts.slice(0,-1).join(', ')+' and '+parts[parts.length-1] : parts[0])+'.' : 'No faults in this selection.'; })()} Weekends wait longest. Ridgeline machines fault ${(rr/ro).toFixed(1)}× as often as the other two makers.`;
+  $('#q3answer').innerHTML=`<b>Answer:</b> Downtime is a small leak, not the main story. The floor was available ${fmt.pct(1-downH/sched,1)} of scheduled hours, and downtime cost about ${fmt.usdk(lost)} of expected win (${fmt.pct(lost/theo,1)}) in ${periodLabel()}. It is also not why the bottom 10 earned less: ${(()=>{ const b=[...AG.list].sort((a,c)=>a.hw-c.hw).slice(0,10); return `their downtime cost at most ${fmt.usd(Math.max(...b.map(a=>a.lt)))} each, against gaps of ${fmt.usdk(Math.min(...b.map(a=>a.med-a.hw)))}–${fmt.usdk(Math.max(...b.map(a=>a.med-a.hw)))} to the median machine`; })()}. The pattern is <b>when</b>. ${(()=>{ const parts=[[full2,'on a fully staffed two-tech shift'],[g,'on the one-tech grave shift'],[sh,'when a shift is short-staffed']].filter(([x])=>x.length).map(([x,l])=>`${mean(x.map(f=>f.wait)).toFixed(1)} h ${l}`); return parts.length? 'Faults wait for a technician '+(parts.length>1? parts.slice(0,-1).join(', ')+' and '+parts[parts.length-1] : parts[0])+'.' : 'No faults in this selection.'; })()} Weekends wait longest. Ridgeline machines fault ${(rr/ro).toFixed(1)}× as often as the other two makers.`;
 }
 
 // ---------- Q4
@@ -900,7 +911,7 @@ function renderQ4(){
     ['Tracked contribution',fmt.usdk(ctb),`house win + F&B cash − F&B cost · comps ${fmt.usdk(cc)}`],
   ].map(t=>`<div class="card tile"><div class="lbl">${t[0]}</div><div class="val">${t[1]}</div><div class="note">${t[2]}</div></div>`).join('');
   const C=B.conc;
-  $('#q4answer').innerHTML=`<b>Answer:</b> in ${periodLabel()}, ${esc(grp.toLowerCase())} wagered ${fmt.usdk(ci)}, got back ${fmt.usdk(pay)} and lost ${fmt.usdk(-net)} net. That is within ${fmt.pct(Math.abs((net+theo)/theo),1)} of what the game math predicts (theo ${fmt.usdk(theo)}), so the tracked floor as a whole was not lucky or unlucky. Results are very concentrated: over six months the top 1% of players produced ${fmt.pct(C.theo[1][1],0)} of theo and ${fmt.pct(C.loss[1][1],0)} of net losses, and the top 10% produced ${fmt.pct(C.theo[3][1],0)} of theo. Only ${fmt.pct(C.ahead_share,0)} of players finished the half-year ahead. Concentration this high is a reason for responsible-gaming checks on the heaviest losers, <b>not</b> a target list for more play.`;
+  $('#q4answer').innerHTML=`<b>Answer:</b> In ${periodLabel()}, ${esc(grp.toLowerCase())} wagered ${fmt.usdk(ci)}, got back ${fmt.usdk(pay)} and lost ${fmt.usdk(-net)} net. That is within ${fmt.pct(Math.abs((net+theo)/theo),1)} of what the game math predicts (theo ${fmt.usdk(theo)}), so the tracked floor as a whole was not lucky or unlucky. Results are very concentrated: over six months the top 1% of players produced ${fmt.pct(C.theo[1][1],0)} of theo and ${fmt.pct(C.loss[1][1],0)} of net losses, and the top 10% produced ${fmt.pct(C.theo[3][1],0)} of theo. Only ${fmt.pct(C.ahead_share,0)} of players finished the half-year ahead. Concentration this high is a reason for responsible-gaming checks on the heaviest losers, <b>not</b> a target list for more play.`;
   // concentration chart
   const lab=p=>p<0.01?'Top 0.1%':'Top '+(p*100)+'%';
   colChart('concChart',C.theo.filter(x=>x[0]<1).map((t,i)=>({label:lab(t[0]),vals:[{v:t[1],color:css('--s1'),name:'Share of theo'},{v:C.loss[i][1],color:css('--s2'),name:'Share of net losses'}]})),{H:210,yf:v=>fmt.pct(v,0),labels:true,lf:v=>fmt.pct(v,0),bw:20});
@@ -932,7 +943,7 @@ function renderQ5(){
     ['Points per $1 of comp',`${cc.pts_per_usd_before} → ${cc.pts_per_usd_after}`,'before vs after May 1 (−56%)'],
     ['Comp cost per day',`${fmt.usd(cc.before.comp_per_day)} → ${fmt.usd(cc.after.comp_per_day)}`,fmt.sgnPct(cc.after.comp_per_day/cc.before.comp_per_day-1,1)+' after the change'],
   ].map(t=>`<div class="card tile"><div class="lbl">${t[0]}</div><div class="val">${t[1]}</div><div class="note">${t[2]}</div></div>`).join('');
-  $('#q5answer').innerHTML=`<b>Answer:</b> comps are cheap. They cost ${fmt.usdk(comp)} in cost of goods in ${periodLabel()}, about ${fmt.pct(pcc/ptheo,1)} of tracked theo. Menu value is ${fmt.usdk(fv)}, but that is not cash. <b>Something changed on May 1, 2025:</b> the points charged per comp dollar fell from ~${cc.pts_per_usd_before} to ~${cc.pts_per_usd_after} overnight, so a comp now costs players less than half the points. Points earned per dollar of theo did not change. Afterwards, comp cost per day rose ${fmt.sgnPct(cc.after.comp_per_day/cc.before.comp_per_day-1,0)} and reinvestment rose from ${fmt.pct(cc.before.reinv,2)} to ${fmt.pct(cc.after.reinv,2)} of theo, but coin-in per day went <i>down</i> ${fmt.pct(1-cc.after.ci_per_day/cc.before.ci_per_day,1)} and the carded share barely moved. So far there is no sign the richer rate bought more play, though the season confounds this comparison.`;
+  $('#q5answer').innerHTML=`<b>Answer:</b> Comps are cheap. They cost ${fmt.usdk(comp)} in cost of goods in ${periodLabel()}, about ${fmt.pct(pcc/ptheo,1)} of tracked theo. Menu value is ${fmt.usdk(fv)}, but that is not cash. <b>Something changed on May 1, 2025:</b> the points charged per comp dollar fell from ~${cc.pts_per_usd_before} to ~${cc.pts_per_usd_after} overnight, so a comp now costs players less than half the points. Points earned per dollar of theo did not change. Afterwards, comp cost per day rose ${fmt.sgnPct(cc.after.comp_per_day/cc.before.comp_per_day-1,0)} and reinvestment rose from ${fmt.pct(cc.before.reinv,2)} to ${fmt.pct(cc.after.reinv,2)} of theo, but coin-in per day went <i>down</i> ${fmt.pct(1-cc.after.ci_per_day/cc.before.ci_per_day,1)} and the carded share barely moved. So far there is no sign the richer rate bought more play, though the season confounds this comparison.`;
   $('#compTbl').innerHTML=`<thead><tr><th class="l">Measure</th><th>Before (Jan–Apr)</th><th>After (May–Jun)</th><th>Change</th></tr></thead><tbody>`+[
     ['Points per $1 of comp face value',cc.pts_per_usd_before,cc.pts_per_usd_after,v=>v.toFixed(2)],
     ['Comp cost per day',cc.before.comp_per_day,cc.after.comp_per_day,fmt.usd],
@@ -950,7 +961,7 @@ function renderModel(){
   hbarChart('maeChart',names.map(([k,n],i)=>({label:n,v:M.mae[k],color:cols[i],tip:tipRows(n,[['Holdout MAE',fmt.usd(M.mae[k])],['Holdout MAPE',fmt.pct(M.mape[k],1)],['Training MAE',fmt.usd(M.mae_train[k])]])})),{ml:180,vf:fmt.usdk,xf:fmt.usdk,min:0});
   $('#maeTbl').innerHTML=`<thead><tr><th class="l">Forecast</th><th>Train MAE (Jan–Apr)</th><th>Holdout MAE (May–Jun)</th><th>Holdout MAPE</th><th>vs baseline</th></tr></thead><tbody>`+names.map(([k,n])=>`<tr style="cursor:default"><td class="l">${n}</td><td>${fmt.usd(M.mae_train[k])}</td><td><b>${fmt.usd(M.mae[k])}</b></td><td>${fmt.pct(M.mape[k],1)}</td><td>${k==='p_const'?'–':fmt.sgnPct(M.mae[k]/M.mae.p_const-1,0)}</td></tr>`).join('')+'</tbody>';
   lineChart('fcChart',[{name:'Actual',color:css('--ink-2'),pts:te.map(r=>[r[0],r[2]])},{name:'Weekday model',color:css('--s1'),pts:te.map(r=>[r[0],r[4]])},{name:'Constant baseline',color:css('--s2'),pts:te.map(r=>[r[0],r[3]])}],{H:230});
-  $('#modelAnswer').innerHTML=`<b>Result:</b> the weekday model cuts holdout error by ${fmt.pct(1-M.mae.p_wd/M.mae.p_const,0)} against the constant baseline (MAE ${fmt.usdk(M.mae.p_wd)} vs ${fmt.usdk(M.mae.p_const)} per day, ${fmt.pct(M.mape.p_wd,1)} error). Adding the event uplift learned in training (×${M.ev_uplift.toFixed(3)}, applied only to events announced before May 1) trims error a further ${fmt.pct(1-M.mae.p_wdev/M.mae.p_wd,0)} to ${fmt.usdk(M.mae.p_wdev)}, so we use it for planning. A linear trend fits the training data well but <b>does worse</b> on the holdout (${fmt.usdk(M.mae.p_wdtr)}). It overfits a spring rise that did not continue, so we rejected it. Train and holdout were split by time, and nothing from May–June was used to fit any forecast.`;
+  $('#modelAnswer').innerHTML=`<b>Result:</b> The weekday model cuts holdout error by ${fmt.pct(1-M.mae.p_wd/M.mae.p_const,0)} against the constant baseline (MAE ${fmt.usdk(M.mae.p_wd)} vs ${fmt.usdk(M.mae.p_const)} per day, ${fmt.pct(M.mape.p_wd,1)} error). Adding the event uplift learned in training (×${M.ev_uplift.toFixed(3)}, applied only to events announced before May 1) trims error a further ${fmt.pct(1-M.mae.p_wdev/M.mae.p_wd,0)} to ${fmt.usdk(M.mae.p_wdev)}, so we use it for planning. A linear trend fits the training data well but <b>does worse</b> on the holdout (${fmt.usdk(M.mae.p_wdtr)}). It overfits a spring rise that did not continue, so we rejected it. Train and holdout were split by time, and nothing from May–June was used to fit any forecast.`;
   const fw=M.fault_by_wd; const wds=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
   const tw=wds.reduce((s,w)=>s+(fw[w]?fw[w].wait:0),0); const td=wds.reduce((s,w)=>s+M.wd_mean[w],0);
   $('#modelDecision').innerHTML=`<p class="small">The forecast shows that Friday and Saturday carry ${fmt.pct((M.wd_mean.Fri+M.wd_mean.Sat)/td,0)} of a typical week's coin-in, and Saturday runs about ${(M.wd_mean.Sat/M.wd_mean.Tue).toFixed(1)}× Tuesday. Fault wait-hours are concentrated the same way: Fri–Sun hold ${fmt.pct(['Fri','Sat','Sun'].reduce((s,w)=>s+fw[w].wait,0)/tw,0)} of all technician wait time. <b>Decision it changes:</b> if a technician were added, they should go to the weekend and grave shifts, not spread evenly. A promotion weekend should not be placed on a Saturday, which the forecast already expects to be full. The model also gives the measurement baseline for §6: each funded action is judged against the weekday forecast for July, not against raw June numbers.</p>
@@ -1037,7 +1048,7 @@ function drawPlan(){
   const ours=Object.keys(OURS).reduce((s,id)=>s+cost(id,OURS[id]),0);
   { const mgrC=cost('A-REPLACE-LEASE',10), mgrB=benefit('A-REPLACE-LEASE',10).v, ourB=Object.keys(OURS).reduce((s,id)=>s+benefit(id,OURS[id]).v,0);
     $('#heroCmp').innerHTML=`<div class="grid g3" style="margin-top:14px"><div class="tile"><div class="lbl">Manager's plan</div><div class="val">${fmt.usd(mgrC)}</div><div class="note">lease 10 replacements · est. ${fmt.usdk(mgrB)} theo in July</div></div><div class="tile" style="background:var(--hl-green)"><div class="lbl">Our plan</div><div class="val">${fmt.usd(ours)}</div><div class="note">3 targeted actions · est. ${fmt.usdk(ourB)} theo + a pilot answer</div></div></div><div style="margin-top:12px"><a class="evlink" href="#q6">See the $100k plan →</a></div>`; }
-  $('#q6answer').innerHTML=`<b>Recommendation:</b> don't replace the bottom 10. Most of them are in a weak spot, short-tenured or unlucky, and leasing replacements would cost $33,800 for an estimated ${fmt.usdk(benefit('A-REPLACE-LEASE',10).v)} of 30-day theo. Instead, fund three targeted actions for <b>${fmt.usd(ours)}</b>: (1) <b>inspect M-1158</b>, the one likely leak; (2) <b>signage for Back Forty</b>, the location problem the walkway closure exposed; (3) a <b>comp pilot with a control group</b> to learn whether the May 1 redemption change is worth its cost. <b>Keep ${fmt.usd(100000-ours)}</b>. Downtime is too small to justify an $11,520 technician: the grave-shift saving is worth about ${fmt.usd(benefit('A-TECH-SHIFT',1).v)} a month. Keeping the budget is a valid answer when the evidence points to luck.<div style="margin-top:10px"><b style="background:none;color:inherit;padding:0;font-size:inherit;letter-spacing:0;text-transform:none">Trace it:</b> ${[['A-INSPECT','Inspect'],['A-WAYFINDING','Signage'],['A-COMP-PILOT','Pilot']].map(([id,l])=>`<span style="margin-right:10px"><span class="small" style="font-weight:700">${l}:</span> ${evLinks(id)}</span>`).join('')}</div>`;
+  $('#q6answer').innerHTML=`<b>Recommendation:</b> Don't replace the bottom 10. Most of them are in a weak spot, short-tenured or unlucky, and leasing replacements would cost $33,800 for an estimated ${fmt.usdk(benefit('A-REPLACE-LEASE',10).v)} of 30-day theo. Instead, fund three targeted actions for <b>${fmt.usd(ours)}</b>: (1) <b>inspect M-1158</b>, the one likely leak; (2) <b>signage for Back Forty</b>, the location problem the walkway closure exposed; (3) a <b>comp pilot with a control group</b> to learn whether the May 1 redemption change is worth its cost. <b>Keep ${fmt.usd(100000-ours)}</b>. Downtime is too small to justify an $11,520 technician: the grave-shift saving is worth about ${fmt.usd(benefit('A-TECH-SHIFT',1).v)} a month. Keeping the budget is a valid answer when the evidence points to luck.<div style="margin-top:10px"><b style="background:none;color:inherit;padding:0;font-size:inherit;letter-spacing:0;text-transform:none">Trace it:</b> ${[['A-INSPECT','Inspect'],['A-WAYFINDING','Signage'],['A-COMP-PILOT','Pilot']].map(([id,l])=>`<span style="margin-right:10px"><span class="small" style="font-weight:700">${l}:</span> ${evLinks(id)}</span>`).join('')}</div>`;
 }
 
 // ---------- appendix

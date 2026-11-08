@@ -35,4 +35,4 @@ Manager's plan for comparison: lease 10 replacements = 10 × ($2,500 + 16 × $55
 
 ## AI-use disclosure
 
-The analysis pipeline (`analysis/build_data.py`), the dashboard (HTML/SVG/JS, including the neo-brutalist visual design), this appendix and the write-up were drafted with Claude (Anthropic) via Claude Code. Claude wrote the pandas code and the charts, and drafted the text. Every number is computed from the provided data by the script, and the team should review each claim before submitting.
+The analysis pipeline (`analysis/build_data.py`), the dashboard (HTML/SVG/JS, including the visual design), this appendix and the write-up were drafted with Claude (Anthropic) via Claude Code. Claude wrote the pandas code and the charts, and drafted the text. Every number is computed from the provided data by the script, and the team should review each claim before submitting.
